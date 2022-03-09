@@ -1,6 +1,7 @@
 import { NextPage } from "next"
 import { groq } from "next-sanity"
 import { FeaturedPost } from "../../components/blog"
+import RecentPost from "../../components/blog/RecentPost"
 import { sanityClient } from "../../sanity"
 import { Post } from "../../typings"
 
@@ -9,12 +10,18 @@ interface Props {
     posts: Post[]
 }
 
-const Blog: NextPage<Props> = ({featuredPost}) => {
+const Blog: NextPage<Props> = ({featuredPost, posts }) => {
     return (
         <main className="container">
             <div className="layout">
-                <div className="main-content">
+                <div className="main-content blog">
                     <FeaturedPost post={featuredPost}/>    
+                    <hr className="seperator"/>
+                    <div className="recent-post-list">
+                        {posts.map(post => (
+                            <RecentPost key={post._id} post={post}/>
+                        ))}
+                    </div>
                 </div>
                 <div className="sidebar">World</div>
             </div>
@@ -27,6 +34,7 @@ export default Blog
 export const getServerSideProps = async () => {
     const query = groq`*[_type == "post"] {
         _id,
+        _createdAt,
         title,
         slug,
         body,
