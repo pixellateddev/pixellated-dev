@@ -10,7 +10,7 @@ interface Props {
 
 
 const FeaturedPost: FC<Props> = ({post}) => {
-    const body = (post.body[0] as any).children[0].text
+    const body = (post.body[0] as any).children[0].text.split(' ').slice(0, 50).join(' ') + '...';
     return (
         <div className="featured-post">
             <div className="featured-post-details">

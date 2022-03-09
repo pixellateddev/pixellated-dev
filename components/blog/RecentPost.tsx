@@ -9,7 +9,7 @@ interface Props {
 }
 
 const RecentPost: FC<Props> = ({post}) => {
-    const body = (post.body[0] as any).children[0].text
+    const body = (post.body[0] as any).children[0].text.split(' ').slice(0, 50).join(' ') + '...';
     return (
         <div className="recent-post">
             <h2 className="recent-post-title">{post.title}</h2>

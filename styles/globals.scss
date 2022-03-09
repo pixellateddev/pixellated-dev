@@ -16,7 +16,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-  margin: 0
+  margin: 0;
+  line-height: 1.4;
+  letter-spacing: 1.1px;
 }
 
 img {
@@ -121,10 +123,13 @@ a {
     .featured-post-image {
       grid-row: 1 / 4;
       grid-column: 1;
+      height: 100%;
+      object-fit: cover;
     }
   
     .featured-post-details {
       display: flex;
+      align-items: start;
       flex-direction: column;
       grid-row: 2 / 4;
       grid-column: 1;
@@ -188,6 +193,8 @@ a {
 
     .recent-post-image {
       grid-area: recent-post-image;
+      height: 100%;
+      object-fit: cover;
     }
 
     .recent-post-title {
