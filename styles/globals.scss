@@ -250,3 +250,120 @@ main {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+.block {
+  margin-bottom: 1em;
+
+  h3 {
+      margin-bottom: 0.5em;
+  }
+}
+
+
+.resume-preview {
+  font-size: 1rem;
+  padding: 1em;
+  display: flex;
+  gap: 1em;
+  width: 80%;
+  max-width: 1440px;
+  margin: 0 auto;
+  font-family: 'profile-pro', sans-serif;
+  font-weight: 200;
+
+
+  h2 {
+      font-weight: 300;
+  }
+
+  h2, h3 {
+      color: #4B79A0;
+      font-family: 'copperplate', serif;
+  }
+
+  .list-title {
+      margin-bottom: 0.375em;
+  }
+
+  .list-items {
+      margin-block: 0em;
+      line-height: 1.1;
+      list-style: none;
+      padding-left: 0.5em;
+
+      li {
+          margin-bottom: .375em;
+      }
+  }
+
+
+  .sidebar {
+      flex: 1
+  }
+
+  .main {
+      flex: 2
+  }
+
+
+  .personal-details {
+      .contact-details {
+          display: flex;
+          flex-wrap: wrap;
+      }
+
+      .contact-details-item {
+          width: 50%;
+      }
+  }
+
+  .org-details {
+      display: flex;
+      justify-content: space-between;
+
+      * {
+          margin-bottom: 0;
+      }
+  }
+
+  .work-experience {
+      margin-bottom: 1.5em;
+  }
+
+
+  .org-name {
+      font-weight: 700;
+  }
+
+  .job-role {
+      margin-bottom: 0.25em;
+      font-size: 0.875rem;
+      font-weight: 400;
+  }
+
+  .course {
+      margin-bottom: 1.5em;
+      * {
+          margin-bottom: 0;
+      }
+  }
+  .course-details {
+      display: flex;
+      justify-content: space-between;
+
+  }
+  .course-name, .school {
+      font-weight: 700;
+  }
+
+}
