@@ -6,6 +6,7 @@ body {
   padding: 0;
   margin: 0;
   font-family: "profile-pro", sans-serif;
+  color: $black;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -17,6 +18,10 @@ p {
   margin: 0
 }
 
+img {
+  max-width: 100%;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -26,12 +31,38 @@ a {
   box-sizing: border-box;
 }
 
+@mixin paddingX($value) {
+  padding-top: $value;
+  padding-bottom: $value;
+}
+
 .container {
   max-width: 1280px;
   padding-left: 1em;
   padding-right: 1em;
   margin: 0 auto;
 }
+
+.layout {
+  display: grid;
+  grid-template-columns: 1;
+  gap: 1em;
+  @include paddingX(1em);
+
+  @media (min-width: 800px) {
+    grid-template-columns: repeat(12, [col-start] 1fr);
+  }
+
+  .main-content {
+    grid-column: 1 / -4;
+  }
+
+  .sidebar {
+    grid-column: -4 / -1;
+  }
+}
+
+
 
 
 .header {
@@ -65,4 +96,43 @@ a {
     }
   }
 
+}
+
+
+.featured-post {
+  display: grid;
+  grid-template-columns: 100%;
+  background-color: $black;
+
+  .featured-post-image {
+    grid-row: 1 / 4;
+    grid-column: 1;
+  }
+
+  .featured-post-details {
+    grid-row: 2 / 4;
+    grid-column: 1;
+    background-color: rgba($black, 0.6);
+    backdrop-filter: blur(5px);
+    color: white;
+    padding: 1em;
+  }
+
+  .featured-post-title {
+    margin-bottom: .5em;
+  }
+
+  .featured-post-body {
+    margin-bottom: 1em;
+  }
+
+  .featured-post-link {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: $nav-link-color;
+
+    &:hover {
+      color: $nav-link-hover;
+    }
+  }
 }
