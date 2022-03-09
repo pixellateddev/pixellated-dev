@@ -184,7 +184,7 @@ const ResumePreview: FC= () => {
 
                 <Block title="Education Details">
                     {user.education.map(course => (
-                        <div className="course">
+                        <div className="course" key={course.courseName}>
                             <div className="course-details">
                                 <p className="course-name">{course.courseName}</p>
                                 <p>{course.startYear} - {course.endYear}</p>
