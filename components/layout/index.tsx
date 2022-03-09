@@ -6,7 +6,7 @@ import Header from "./Header"
 const Layout: FC = ({children}) => {
     const router = useRouter()
     if (router.asPath === '/resume') {
-        return children
+        return <>{children}</>
     }
     return (
         <div className="body">
