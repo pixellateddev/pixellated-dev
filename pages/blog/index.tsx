@@ -23,7 +23,7 @@ const Blog: NextPage<Props> = ({featuredPost, posts }) => {
                         ))}
                     </div>
                 </div>
-                <div className="sidebar">World</div>
+                <div className="sidebar"></div>
             </div>
         </main>
     )
