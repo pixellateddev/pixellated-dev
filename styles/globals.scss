@@ -25,3 +25,44 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.container {
+  max-width: 1280px;
+  padding-left: 1em;
+  padding-right: 1em;
+  margin: 0 auto;
+}
+
+
+.header {
+  background-color: $header-color;
+
+  .nav {
+    display: flex;
+    align-items: center;
+    color: white;
+  }
+
+  .logo {
+    height: 32px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2em;
+    list-style: none;
+    font-size: 1.25rem;
+    padding-left: 0;
+    margin-left: 5em;
+  }
+
+  .nav-link {
+    color: $nav-link-color;
+    transition: .3s color;
+
+    &:hover {
+      color: $nav-link-hover;
+    }
+  }
+
+}
