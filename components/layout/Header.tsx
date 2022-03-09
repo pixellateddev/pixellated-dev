@@ -1,7 +1,11 @@
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { FC } from "react"
+import cx from 'classnames'
 
 const Header: FC = () => {
+    const router = useRouter()
+    const path = router.asPath.split('/')[1]
     return (
         <header className="header">
             <nav className="nav container">
@@ -11,12 +15,20 @@ const Header: FC = () => {
                 <ul className="nav-links">
                     <li>
                         <Link href="/blog">
-                            <a className="nav-link">Blog</a>
+                            <a className={cx("nav-link", {
+                                "nav-link-active": path === 'blog'
+                            })}>
+                                Blog
+                            </a>
                         </Link>
                     </li>
                     <li>
                         <Link href="/about">
-                            <a className="nav-link">About</a>
+                            <a className={cx("nav-link", {
+                                "nav-link-active": path === 'about'
+                            })}>
+                                About
+                            </a>
                         </Link>
                     </li>
                 </ul>

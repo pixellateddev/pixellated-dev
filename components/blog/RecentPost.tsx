@@ -16,7 +16,7 @@ const RecentPost: FC<Props> = ({post}) => {
             <p className="recent-post-body">{body}</p>
             <img src={urlFor(post.mainImage).url()!} className="recent-post-image"/>
             <p className="caption recent-post-date">{toDate(post._createdAt)}</p>
-            <Link href={`/posts/${post.slug.current}`}>
+            <Link href={`/blog/${post.slug.current}`}>
                 <a className="recent-post-link">Continue Reading</a>    
             </Link>
 

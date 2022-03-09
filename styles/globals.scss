@@ -70,6 +70,15 @@ a {
 }
 
 
+.body  {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+main {
+  flex: 1;
+}
 
 
 .header {
@@ -102,6 +111,11 @@ a {
       color: $nav-link-hover;
     }
   }
+
+  .nav-link-active {
+    padding-bottom: 4px;
+    border-bottom: 3px solid;
+  }
 }
 
 .footer {
@@ -111,7 +125,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1em;
+    padding: 3em;
   }
 
   .footer-logo {

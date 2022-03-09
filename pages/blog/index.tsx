@@ -1,5 +1,6 @@
 import { NextPage } from "next"
 import { groq } from "next-sanity"
+import Head from "next/head"
 import { FeaturedPost } from "../../components/blog"
 import RecentPost from "../../components/blog/RecentPost"
 import { sanityClient } from "../../sanity"
@@ -12,20 +13,25 @@ interface Props {
 
 const Blog: NextPage<Props> = ({featuredPost, posts }) => {
     return (
-        <main className="container">
-            <div className="layout">
-                <div className="main-content blog">
-                    <FeaturedPost post={featuredPost}/>    
-                    <hr className="seperator"/>
-                    <div className="recent-post-list">
-                        {posts.map(post => (
-                            <RecentPost key={post._id} post={post}/>
-                        ))}
+        <>
+            <Head>
+                <title>Blog | Pixellateddev</title>
+            </Head>
+            <main className="container">
+                <div className="layout">
+                    <div className="main-content blog">
+                        <FeaturedPost post={featuredPost}/>    
+                        <hr className="seperator"/>
+                        <div className="recent-post-list">
+                            {posts.map(post => (
+                                <RecentPost key={post._id} post={post}/>
+                            ))}
+                        </div>
                     </div>
+                    <div className="sidebar"></div>
                 </div>
-                <div className="sidebar"></div>
-            </div>
-        </main>
+            </main>
+        </>
     )
 }
 
