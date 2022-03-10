@@ -159,13 +159,14 @@ main {
     .featured-post-image {
       grid-row: 1 / 4;
       grid-column: 1;
-      height: 100%;
+      height: 400px;
+      width: 100%;
       object-fit: cover;
     }
   
     .featured-post-details {
       display: flex;
-      align-items: start;
+      align-items: flex-start;
       flex-direction: column;
       grid-row: 2 / 4;
       grid-column: 1;
@@ -247,6 +248,34 @@ main {
       letter-spacing: 3px;
       font-weight: 700;
     }
+  }
+
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  background-color: #F5F8F8;
+  padding: 1em;
+
+  .post-title {
+    margin-bottom: 0.5em;
+  }
+
+  .post-main-image {
+    order: -1;
+    max-height: 400px;
+    object-fit: cover;
+    margin-bottom: 1em;
+  }
+
+  .post-body-h3 {
+    margin-bottom: 1em;
+    margin-top: 1.5em;
+  }
+
+  .post-date {
+    order: -1
   }
 
 }

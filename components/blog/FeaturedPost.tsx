@@ -17,7 +17,7 @@ const FeaturedPost: FC<Props> = ({post}) => {
                 <h2 className="featured-post-title">{post.title}</h2>
                 <p className="caption featured-post-date">{toDate(post._createdAt)}</p>
                 <p className="featured-post-body">{body}</p>
-                <Link href={`blog/${post.slug.current}`}>
+                <Link href={`/blog/${post.slug.current}`}>
                     <a className="featured-post-link">Continue Reading</a>
                 </Link>
             </div>
