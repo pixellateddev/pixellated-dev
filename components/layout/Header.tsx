@@ -31,6 +31,15 @@ const Header: FC = () => {
                             </a>
                         </Link>
                     </li>
+                    <li>
+                        <Link href="/resume-builder">
+                            <a className={cx("nav-link", {
+                                "nav-link-active": path === 'resume-builder'
+                            })}>
+                                Resume Builder
+                            </a>
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </header>

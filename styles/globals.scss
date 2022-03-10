@@ -15,7 +15,8 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "copperplate", serif;
 }
 
-p {
+
+p, ul {
   margin: 0;
   line-height: 1.4;
   letter-spacing: 1.1px;
@@ -43,11 +44,26 @@ a {
   padding-bottom: $value;
 }
 
+@media print {
+  body {
+    -webkit-print-color-adjust: exact; 
+  }
+
+  .header, .footer {
+    display: none;
+  }
+}
+
 .container {
   max-width: 1280px;
+  width: 100%;
   padding-left: 1em;
   padding-right: 1em;
   margin: 0 auto;
+
+  @media (min-width: 800px) {
+    width: 80%;
+  }
 }
 
 .layout {
@@ -56,7 +72,7 @@ a {
   gap: 1em;
   @include paddingX(1em);
 
-  @media (min-width: 800px) {
+  @media screen and (min-width: 800px) {
     grid-template-columns: repeat(12, [col-start] 1fr);
   }
 
@@ -67,6 +83,16 @@ a {
   .sidebar {
     grid-column: -4 / -1;
   }
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+}
+
+.icon-text {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
 }
 
 
@@ -88,6 +114,8 @@ main {
     display: flex;
     align-items: center;
     color: white;
+    padding: 1em;
+
   }
 
   .logo {
@@ -278,4 +306,99 @@ main {
     order: -1
   }
 
+}
+
+
+.resume-theme-box {
+  height: 200px;
+  width: 200px;
+  background-color: beige;
+  cursor: pointer;
+}
+
+
+.resume-preview {
+
+  h2, h3 {
+    color: #4B79A0;
+  }
+
+  h2 {
+    font-weight: 400;
+  }
+  
+
+  .layout {
+    @media print {
+      grid-template-columns: repeat(12, [col-start] 1fr);
+    }
+  }
+
+  .personal-details {
+    .user-name {
+      margin-bottom: 0.5em;
+    }
+
+    .user-description {
+      margin-bottom: 1em;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-wrap: wrap;
+  
+      .contact-details-item {
+        width: 50%;
+        margin-bottom: 0.5em;
+      }
+    }
+  }
+
+  .resume-block {
+    margin-bottom: 1em;
+  
+    .resume-block-title {
+      margin-bottom: 0.5em;
+    }
+  }
+  
+  .work-experience {
+    margin-bottom: 1em;
+
+    .org-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .org-name {
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+  }
+  
+  .education-details {
+    margin-bottom: 1em;
+
+    .course-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .course-name {
+      font-weight: 700;
+      font-size: 1.25rem;
+    }
+
+    .education-location {
+      font-size: 1rem;
+    }
+  }
+
+  .placeholder {
+    text-align: center;
+    padding: 0.5em;
+    background-color: aquamarine;
+  }
 }
