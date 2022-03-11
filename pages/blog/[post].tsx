@@ -2,6 +2,8 @@ import { GetStaticProps, NextPage } from "next"
 import { groq } from "next-sanity"
 import { sanityClient, urlFor } from "../../sanity"
 import PortableText from 'react-portable-text'
+import styles from '../../styles/blog.module.scss'
+import cx from 'classnames'
 
 import { Post } from "../../typings"
 import Head from "next/head"
@@ -19,16 +21,18 @@ const PostPage: NextPage<Props> = ({post}) => {
             </Head>
             <main className="container">
                 <div className="layout">
-                    <div className="main-content post">
-                    <h2 className="post-title">{post.title}</h2>
-                    <img src={urlFor(post.mainImage).url()!} className="post-main-image"/>
-                    <PortableText 
-                        content={post.body}
-                        serializers={{
-                            h3: (props: any) => <h3 className="post-body-h3" {...props} />
-                        }}
-                    />
-                    <p className="caption post-date">{toDate(post._createdAt)}</p>
+                    <div className="main-content">
+                    <div className={styles.post}>
+                        <h2 className={styles.postTitle}>{post.title}</h2>
+                        <img src={urlFor(post.mainImage).url()!} alt={post.title} className={styles.postMainImage}/>
+                        <PortableText
+                            content={post.body}
+                            serializers={{
+                                h3: (props: any) => <h3 className={styles.postBodyH3} {...props} />
+                            }}
+                        />
+                        <p className={cx('caption', styles.postDate)}>{toDate(post._createdAt)}</p>
+                    </div>
                     </div>
                 </div>
             </main>
