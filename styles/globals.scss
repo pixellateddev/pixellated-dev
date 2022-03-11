@@ -189,9 +189,10 @@ main {
 
 .resume-preview {
 
-  h2, h3 {
+  h2, h3, a {
     color: #4B79A0;
   }
+
 
   h2 {
     font-weight: 400;
@@ -226,6 +227,10 @@ main {
 
   .resume-block {
     margin-bottom: 1em;
+
+    @media print {
+      break-inside: avoid;
+    }
   
     .resume-block-title {
       margin-bottom: 0.5em;
