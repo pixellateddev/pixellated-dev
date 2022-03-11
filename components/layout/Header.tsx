@@ -2,6 +2,7 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { FC } from "react"
 import cx from 'classnames'
+import { Segmentation } from "../icons"
 
 const Header: FC = () => {
     const router = useRouter()
@@ -41,6 +42,9 @@ const Header: FC = () => {
                         </Link>
                     </li>
                 </ul>
+                <div role="button" className="hamburger">
+                    <Segmentation />
+                </div>
             </nav>
         </header>
     )
