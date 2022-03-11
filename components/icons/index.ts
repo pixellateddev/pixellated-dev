@@ -4,6 +4,7 @@ import CallDoctor from './CallDoctor'
 import Letter from './Letter'
 import LoveHeartPin from './LoveHeartPin'
 import Segmentation from './Segmentation'
+import ERemove from './ERemove'
 
 export {
     LogoGithub,
@@ -11,5 +12,6 @@ export {
     CallDoctor,
     Letter,
     LoveHeartPin,
-    Segmentation
+    Segmentation,
+    ERemove
 }
