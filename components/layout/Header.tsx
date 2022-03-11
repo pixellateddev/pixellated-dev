@@ -2,7 +2,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { FC, MouseEventHandler, useEffect, useState } from "react"
 import cx from 'classnames'
-import { ERemove, Segmentation } from "../icons"
+import { ERemove, Logout, Segmentation } from "../icons"
+import { useSession, signIn, signOut } from "next-auth/react"
+import { Button } from "../ui"
 
 
 interface NavProps {
@@ -48,8 +50,10 @@ const NavLinks: FC<NavProps> = ({overlay, onClick}) => {
 }
 
 const Header: FC = () => {
+    const {data: session} = useSession()
+    console.log(session)
     const [navigationOpened, setNavigationOpened] = useState(false)
-
+    
     const toggleNavigation = () => {
         setNavigationOpened(!navigationOpened)
     }
@@ -69,15 +73,33 @@ const Header: FC = () => {
                 <Link href="/">
                     <a><img src="/assets/images/logo.svg" alt="logo" className="logo"/></a>
                 </Link>
-                <NavLinks />
+                <div className="nav-toolbar">
+                    <NavLinks />
+                    { session ? 
+                    <div className="session">
+                        <p>Hi, {session.user?.name}</p>
+                        <div role="button" className="logout-button" onClick={() => signOut()}>
+                            <Logout />
+                        </div>
+                    </div>
+                    : 
+                    <Button variant="text" onClick={() => signIn('github')}>Login</Button>
+                    }
+                </div>
                 <div className={cx('menu', {
                     'opened': navigationOpened
                 })}>
                     <div role="button" className="close-menu" onClick={toggleNavigation}>
                         <ERemove title="close"/>
                     </div>
-                    <NavLinks overlay onClick={toggleNavigation}/>
-
+                    <div className="menu-body">
+                        {session ? 
+                            <p>Hi, {session.user?.name}</p> :
+                            <Button variant="text" onClick={() => signIn('github')}>Login</Button>
+                        }
+                        <NavLinks overlay onClick={toggleNavigation}/>
+                        {session && <Button variant="text" onClick={() => signOut()}>Logout</Button>}
+                    </div>
                 </div>
                 <div role="button" className="hamburger" onClick={toggleNavigation}>
                     <Segmentation />

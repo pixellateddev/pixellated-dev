@@ -5,6 +5,7 @@ import Letter from './Letter'
 import LoveHeartPin from './LoveHeartPin'
 import Segmentation from './Segmentation'
 import ERemove from './ERemove'
+import Logout from './Logout'
 
 export {
     LogoGithub,
@@ -13,5 +14,6 @@ export {
     Letter,
     LoveHeartPin,
     Segmentation,
-    ERemove
+    ERemove,
+    Logout
 }

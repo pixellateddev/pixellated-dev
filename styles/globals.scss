@@ -39,6 +39,27 @@ a {
   box-sizing: border-box;
 }
 
+.button {
+  border: 0;
+  font-family: "profile-pro", sans-serif;
+  padding: 0.5em 1.5em;
+  font-size: 1.125rem;
+  cursor: pointer;
+
+  &.text {
+    color: $nav-link-color;
+    padding: 0;
+    font-size: 1.25rem;
+    background-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: .3s color;
+    &:hover {
+      color: $nav-link-hover;
+    }
+  }
+}
+
 .noscroll {
   overflow: hidden;
 }
@@ -118,7 +139,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    color: white;
+    color: $nav-link-color;
     padding: 1em;
 
     @media screen and (min-width: 800px) {
@@ -131,24 +152,40 @@ main {
     height: 32px;
   }
 
-  .nav-links {
+  .nav-toolbar {
     display: none;
+    margin-left: 3em;
+
+    .session {
+      display: flex;
+      gap: 1em;
+    }
+
+
+    @media screen and (min-width: 800px) {
+      display: flex;
+      flex: 1;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .nav-links {
+    display: flex;
     gap: 1em;
     list-style: none;
     font-size: 1.25rem;
     padding-left: 0;
 
     @media screen and (min-width: 800px) {
-      display: flex;
       gap: 1em;
       list-style: none;
       font-size: 1.25rem;
       padding-left: 0;
-      margin-left: 5em;
     }
   }
 
-  .nav-link, .hamburger, .close-menu {
+  .nav-link, .hamburger, .close-menu, .logout-button {
     color: $nav-link-color;
     transition: .3s color;
 
@@ -169,15 +206,22 @@ main {
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.95);
+    background-color: rgba(0, 0, 0, 0.90);
     z-index: 1;
 
     .nav-links {
       display: flex;
       flex-direction: column;
-      margin-top: 5em;
       align-items: center;
     }
+  }
+
+  .menu-body {
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 5em;
   }
 
   .menu.opened {
@@ -192,6 +236,10 @@ main {
     @media screen and (min-width: 800px) {
       display: none;
     }
+  }
+
+  .logout-button {
+    cursor: pointer;
   }
 
   .close-menu {
