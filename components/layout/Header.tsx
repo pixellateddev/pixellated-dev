@@ -51,7 +51,6 @@ const NavLinks: FC<NavProps> = ({overlay, onClick}) => {
 
 const Header: FC = () => {
     const {data: session} = useSession()
-    console.log(session)
     const [navigationOpened, setNavigationOpened] = useState(false)
     
     const toggleNavigation = () => {

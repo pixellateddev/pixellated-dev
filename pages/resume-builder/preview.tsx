@@ -4,6 +4,7 @@ import IconText from "../../components/IconText"
 import { LogoGithub, LogoLinkedin, LoveHeartPin, Letter, CallDoctor } from '../../components/icons'
 import { BlockBody, ResumeBlock } from "../../components/resume"
 import { List, ListItem } from "../../components/resume/List"
+import { useResume } from "../../state/resume"
 
 const user = {
     name: 'Himanshu Sagar',
@@ -144,6 +145,7 @@ const user = {
 }
 
 const ResumePreview: FC = () => {
+    const { user, resume } = useResume()
     return (
         <main className="resume-preview">
             <div className="container">
@@ -151,65 +153,85 @@ const ResumePreview: FC = () => {
                 <div className="layout">
                     <div className="main-content">
                         <ResumeBlock title="" classes="personal-details">
-                            <h2 className="user-name">{user.name}</h2>
-                            <p className="user-description">{user.description}</p>
+                            <h2 className="user-name">{user.personalDetails.fullName}</h2>
+                            {/* <p className="user-description">{user.personalDetails.description}</p> */}
                             <div className="contact-details">
                                 <div className="contact-details-item">
-                                    <IconText icon={<Letter />}>{user.email}</IconText>
+                                    <IconText icon={<Letter />}>{user.personalDetails.email}</IconText>
                                 </div>
                                 <div className="contact-details-item">
-                                    <IconText icon={<CallDoctor />}>{user.contactNo}</IconText>
+                                    <IconText icon={<CallDoctor />}>{user.personalDetails.phoneNumber}</IconText>
                                 </div>
                                 <div className="contact-details-item">
-                                    <IconText icon={<LoveHeartPin />}>{user.location}</IconText>
+                                    <IconText icon={<LoveHeartPin />}>{user.personalDetails.location}</IconText>
                                 </div>
                                 {/* <div className="contact-details-item">
                                     <IconText icon={<LogoLinkedin />}><a href={user.linkedInUrl}>{user.linkedInUrl}</a></IconText>
                                 </div> */}
                                 <div className="contact-details-item">
-                                    <IconText icon={<LogoGithub />}><a href={user.githubUrl} target="_blank" rel="noreferrer">{user.githubUrl}</a></IconText>
+                                    <IconText icon={<LogoGithub />}><a href={user.personalDetails.github} target="_blank" rel="noreferrer">{user.personalDetails.github}</a></IconText>
                                 </div>
                             </div>
                         </ResumeBlock>
-                        <ResumeBlock title="Work Experience">
-                            {user.workExperience.map(exp => (
-                                <div key={`${exp.org} - ${exp.role}`} className="work-experience">
-                                    <div className="org-details">
-                                        <p className="org-name">{exp.org}</p>
-                                        <p>{exp.startDate} - {exp.currentlyWorking ? 'Present' : exp.endDate}</p>
+                        {Boolean(user.workExperience?.length) && 
+                            <ResumeBlock title="Work Experience">
+                                {user.workExperience.map(exp => (
+                                    <div key={`${exp.organization} - ${exp.role}`} className="work-experience">
+                                        <div className="org-details">
+                                            <p className="org-name">{exp.organization}</p>
+                                            <p>{exp.startDate} - {exp.currenltyWorking ? 'Present' : exp.endDate}</p>
+                                        </div>
+                                        <p>{exp.role}</p>
+                                        <p>{exp.description}</p>
+                                        {exp.responsibilities && 
+                                        Boolean(exp.responsibilities.length) && (
+                                            <>
+                                                <p><strong>Responsibilities</strong></p>
+                                                <List>
+                                                    {exp.responsibilities.map(responsibility => (
+                                                        <ListItem key={responsibility}>
+                                                            {responsibility}
+                                                        </ListItem>
+                                                    ))}
+                                                </List>
+                                            </>
+                                        )}
+                                        
                                     </div>
-                                    <p>{exp.role}</p>
-                                    <p>{exp.description}</p>
-                                    {Boolean(exp.responsibilities.length) && (
-                                        <>
-                                            <p><strong>Responsibilities</strong></p>
-                                            <List>
-                                                {exp.responsibilities.map(responsibility => (
-                                                    <ListItem key={responsibility}>
-                                                        {responsibility}
-                                                    </ListItem>
-                                                ))}
-                                            </List>
-                                        </>
-                                    )}
-                                    
-                                </div>
-                            ))}
-                        </ResumeBlock>
-                        <ResumeBlock title="Education Details">
-                            {user.education.map(edu => (
-                                <div key={edu.courseName} className="education-details">
-                                    <div className="course-details">
-                                        <p className="course-name">{edu.courseName}</p>
-                                        <p>{edu.startYear} - {edu.currentlyPursuing ? 'Present' : edu.endYear}</p>
+                                ))}
+                            </ResumeBlock>
+                        }
+                        {Boolean(user.educationDetails?.length) && (
+                            <ResumeBlock title="Education Details">
+                                {user.educationDetails.map(edu => (
+                                    <div key={edu.courseName} className="education-details">
+                                        <div className="course-details">
+                                            <p className="course-name">{edu.courseName}</p>
+                                            <p>{edu.startYear} - {edu.currentlyPursuing ? 'Present' : edu.endYear}</p>
+                                        </div>
+                                        <p>{edu.institute}</p>
+                                        <p className="education-location">{edu.location}</p>
+                                        <p>{edu.score}</p>
                                     </div>
-                                    <p>{edu.school}</p>
-                                    <p className="education-location">{edu.location}</p>
-                                    <p>{edu.score}</p>
-                                </div>
-                            ))}
-                        </ResumeBlock>
-                        <ResumeBlock title="Projects">
+                                ))}
+                            </ResumeBlock>
+                        )}
+                        {resume.left.map(custom => {
+                            const block = user.customInfo.find(block => block.id === custom)
+                            if(block) {
+                                return (
+                                    <ResumeBlock key={custom} title={block.name}>
+                                        <ul>
+                                            {block.values.map(value => (
+                                                <li key={value}>{value}</li>
+                                            ))}
+                                        </ul>
+                                    </ResumeBlock>
+                                )
+                            }
+                        })}
+                        
+                        {/* <ResumeBlock title="Projects">
                             <List>
                                 {user.projects.map(project => (
                                     <ListItem key={project}>
@@ -235,7 +257,7 @@ const ResumePreview: FC = () => {
                                     </ListItem>
                                 ))}
                             </List>
-                        </ResumeBlock>
+                        </ResumeBlock> */}
                     </div>
                     <div className="sidebar">
                         <ResumeBlock title="Skills">
@@ -245,7 +267,21 @@ const ResumePreview: FC = () => {
                                 ))}
                             </List>    
                         </ResumeBlock>
-                        <ResumeBlock title="Strengths">
+                        {resume.right.map(custom => {
+                            const block = user.customInfo.find(block => block.id === custom)
+                            if(block) {
+                                return (
+                                    <ResumeBlock key={custom} title={block.name}>
+                                        <ul>
+                                            {block.values.map(value => (
+                                                <li key={value}>{value}</li>
+                                            ))}
+                                        </ul>
+                                    </ResumeBlock>
+                                )
+                            }
+                        })}
+                        {/* <ResumeBlock title="Strengths">
                             <List>
                                 {user.strengths.map(strength => (
                                     <ListItem key={strength}>{strength}</ListItem>
@@ -272,7 +308,7 @@ const ResumePreview: FC = () => {
                                     <ListItem key={language}>{language}</ListItem>
                                 ))}
                             </List>
-                        </ResumeBlock>
+                        </ResumeBlock> */}
                     </div>
                 </div>
             </div>
