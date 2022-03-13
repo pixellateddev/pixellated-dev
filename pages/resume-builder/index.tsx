@@ -3,7 +3,7 @@ import { NextPage } from "next"
 import Link from "next/link"
 import { useState } from "react"
 import { PersonalDetails } from "../../@types/resume"
-import { CustomBlockBuilder, EducationDetailsBuilder, PersonalDetailsBuilder, SkillBuilder, WorkExperienceBuilder } from "../../components/resume"
+import { CustomBlockBuilder, EducationDetailsBuilder, LayoutBuilder, PersonalDetailsBuilder, SkillBuilder, WorkExperienceBuilder } from "../../components/resume"
 import { useResume } from "../../state/resume"
 
 
@@ -57,6 +57,7 @@ const ResumeBuilder: NextPage = () => {
                         onChange={updateCustomBlock}
                         onDelete={deleteCustomBlock}
                     />
+                    <LayoutBuilder />
                     <Link href="/resume-builder/preview"><Button>Preview</Button></Link>
                 </div>
             </div>

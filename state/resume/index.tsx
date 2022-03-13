@@ -16,25 +16,53 @@ const defaultUser: UserDetails =  {
     educationDetails: [],
     skills: [],
     customInfo: [
+        {
+            id: 'projects',
+            name: 'Projects',
+            values: []
+        },
+        {
+            id: 'certifications',
+            name: 'Certification',
+            values: []
+        },
+        {
+            id: 'activities',
+            name: 'Activities',
+            values: []
+        },
+        {
+            id: 'areaOfInterests',
+            name: 'Area of Interests',
+            values: []
+        },
+        {   
+            id: 'achievements',
+            name: 'Achievements',
+            values: []
+        },
+        {
+            id: 'hobbies',
+            name: 'Hobbies',
+            values: []
+        },
         {   
             id: 'languages',
             name: 'Languages',
-            values: [
-                'English',
-                'Hindi'
-            ]
+            values: []
         }
     ]
 }
 
+const defaultResume: Resume = {
+    theme: 'default',
+    left: ['languages'],
+    right: ['projects', 'certifications', 'activities', 'areaOfInterests', 'achievements', 'hobbies']
+}
 
 const ResumeProvider: FC = ({children}) => {
     const [user, setUser] = useState<UserDetails>(defaultUser)
-    const [resume, setResume] = useState<Resume>({
-        theme: 'default',
-        left: [],
-        right: []
-    })
+    const [resume, setResume] = useState<Resume>(defaultResume)
     return (
         <ResumeContext.Provider value={{ user, setUser, resume, setResume }}>
             {children}
@@ -45,6 +73,30 @@ const ResumeProvider: FC = ({children}) => {
 
 export const useResume = () => {
     const { user, setUser, resume, setResume } = useContext(ResumeContext)!
+
+    const setResumeLeft = (left: string[]) => {
+        console.log({resume, left})
+        setResume({
+            ...resume,
+            left
+        })
+    }
+
+    const setResumeRight = (right: string[]) => {
+        console.log({resume, right})
+        setResume({
+            ...resume,
+            right
+        })
+    }
+
+    const setLayout = (left: string[], right: string[]) => {
+        setResume({
+            ...resume,
+            left,
+            right
+        })
+    }
 
     const updatePersonalDetails = (personalDetails: PersonalDetails) => {
         setUser({
@@ -201,7 +253,10 @@ export const useResume = () => {
         deleteSkill,
         addCustomBlock,
         updateCustomBlock,
-        deleteCustomBlock
+        deleteCustomBlock,
+        setResumeLeft,
+        setResumeRight,
+        setLayout
     }
 }
 

@@ -10,10 +10,27 @@ interface Props {
     onDelete: (id: string) => void
 }
 
-const CustomBlockBuilder: FC<Props> = ({customInfo, onAdd}) => {
+const CustomBlockBuilder: FC<Props> = ({customInfo, onAdd, onChange}) => {
     const [ open, setOpen ] = useState(false)
+    const [ selectedBlock, setSelectedBlock ] = useState<CustomInfo | undefined>()
+
+    const addNewBlock = () => {
+        setSelectedBlock(undefined)
+        setOpen(true)
+    }
+
+    const editBlock = (block: CustomInfo) => {
+        setSelectedBlock(block)
+        setOpen(true)
+    }
+
     const onSubmit = (data: CustomInfo) => {
-        onAdd(data)
+        if (selectedBlock) {
+            onChange(selectedBlock.id, data)
+        }
+        else {
+            onAdd(data)
+        }
         setOpen(false)
     }
     return (
@@ -26,11 +43,11 @@ const CustomBlockBuilder: FC<Props> = ({customInfo, onAdd}) => {
                             <li key={value}>{value}</li>
                         ))}
                     </ul>
-                    <Button>Edit {block.name} details</Button>
+                    <Button onClick={() => editBlock(block)}>{block.values.length ? 'Edit' : 'Add'} {block.name}</Button>
                 </div>
             ))}
-            <Button onClick={() => setOpen(true)}>Add Custom Block</Button>
-            <CustomBlockDialog open={open} onClose={() => setOpen(false)} onOkay={onSubmit}/>
+            <Button onClick={addNewBlock}>Add Custom Block</Button>
+            <CustomBlockDialog open={open} onClose={() => setOpen(false)} onOkay={onSubmit} edit={setSelectedBlock !== null} block={selectedBlock}/>
         </div>
     )
 }

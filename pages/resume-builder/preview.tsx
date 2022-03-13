@@ -6,146 +6,10 @@ import { BlockBody, ResumeBlock } from "../../components/resume"
 import { List, ListItem } from "../../components/resume/List"
 import { useResume } from "../../state/resume"
 
-const user = {
-    name: 'Himanshu Sagar',
-    currentRole: 'Software Engineer III @ FactSet',
-    image: '',
-    description: '',
-    email: 'pixellateddev@gmail.com',
-    contactNo: '+91 7509406124',
-    linkedInUrl: 'https://www.linkedin.com/in/hsagarthegr8/',
-    githubUrl: 'https://github.com/pixellateddev',
-    location: 'Hyderabad, India',
-    skills: [
-        {
-            name: 'React Js'
-        }, 
-        {
-            name: 'JavaScript / Typescript'
-        },
-        {
-            name: 'Python'
-        },
-        {
-            name: 'Next Js'
-        }, 
-        {
-            name: 'Django and Django Rest Framework'
-        },
-        {
-            name: 'Databases - MongoDB, MySQL'
-        }
-    ],
-    projects: [
-        'Built Blink (Real Time) Messenger application using React and Django with Websockets.',
-        'Built Expense Tracker in React using Rest Services from Django.',
-        'Built Capmesh - A Professional Network SPA using MEAN stack.',
-        'Built Agog - A Social Network Web Application as a Minor Project -II using Django Framework.',
-        'Built a Faculty attendance software with facial recognition as a Minor Project using Python, OpenCV, Qt5',
-        `Built a Blog " 'thecodersportal.com' - A web portal for programmers" (2016-2017).`
-    ],
-    certifications: [
-        'Deep Learning Specialization by deeplearning.ai.',
-        'Machine Learning Track by DataCamp',
-        'Data Analyst Track by DataCamp',
-        'Python Programmer Track by DataCamp'
-    ],
-    activities: [
-        `Organized "'Let's Code' - An introductory course to C++ programming" for freshers.`,
-        `Course Instructor and Mentor for 'Lets Code'.`,
-        `Organized a "#!/bin/bash - A linux workshop for beginners".`
-    ],
-    strengths: [
-        'Self Motivated and always initiative to take up the tasks.',
-        'Can work in team as well as single.',
-        'Good communication skills.',
-        'Self confidence',
-        'Hard Working'
-    ],
-
-    achievements: [
-        'Secured AIR 62nd in Google Hash Code 2020.',
-        'Google Codejam Qualifier in year 2015, 2016, 2017, 2018, 2020.',
-        'Codechef Snackdown Qualifier in 2016.',
-        'President, RJITGEEKs.',
-        'Secured 34th Position in CS50X (HarvardX) 2015.',
-        'HackerRank WorldCup Semifinalist in 2015.',
-        'GeeksforGeeks Campus Ambassador in 2016.'
-    ],
-
-    hobbies: [
-        'Competitive Programming',
-        'Singing',
-        'Playing Table Tennis'
-    ],
-    
-    languages: [
-        'English',
-        'Hindi'
-    ],
-
-    workExperience: [
-        {
-            org: 'Factset Research Systems',
-            role: 'Javascript Developer',
-            description: "Working as a Lead Engineer for few projects here. Responsible for making sure that the project is delivered with in the deadline.",
-            startDate: '2020/06',
-            endDate: '',
-            currentlyWorking: true,
-            responsibilities: [
-                // 'Counselling students and resolve their queries.',
-                // 'Guiding students with the process of enrolment in to the University'
-            ]
-        },
-        {
-            org: 'Capgemini India Pvt. Ltd.',
-            role: 'ReactJs Developer',
-            description: 'Building Reusable and testable UI components for one of the top banks in US.',
-            startDate: '2018/06',
-            endDate: '2020/06',
-            currentlyWorking: false,
-            responsibilities: [
-                // 'Customer problem solving by understanding the customer’s query about the product.',
-                // 'Understanding and authenticating the existing product or the new product transaction which is in the process of clients.',
-                // 'Product based suggestions according to the Client’s requirements.',
-                // 'Risk investigation in terms of customer requirement and also with the association of third party.',
-                // 'Handling overall transactions process with accuracy, assurance and productivity.'
-            ]
-        }
-    ],
-    education: [
-        {
-            courseName: 'Bachelor of Engineering in Computer Science',
-            startYear: '2014',
-            endYear: '2018',
-            currentlyPursuing: false,
-            school: 'RustamJi Institute of Technology',
-            location: 'Tekanpur, Madhya Pradesh',
-            score: '7.04 CGPA'
-        },
-        {
-            courseName: 'Higher Secondary (XII)',
-            startYear: '2013',
-            endYear: '2014',
-            currentlyPursuing: false,
-            school: "Kiddy's Corner School - CBSE",
-            location: 'Gwalior, Madhya Pradesh',
-            score: '70%'
-        },
-        {
-            courseName: 'High School (X)',
-            startYear: '2011',
-            endYear: '2012',
-            currentlyPursuing: false,
-            school: "Kiddy's Corner School - CBSE",
-            location: 'Gwalior, Madhya Pradesh',
-            score: '8 CGPA'
-        },
-    ]
-}
 
 const ResumePreview: FC = () => {
     const { user, resume } = useResume()
+    console.log({user, resume})
     return (
         <main className="resume-preview">
             <div className="container">
@@ -218,7 +82,7 @@ const ResumePreview: FC = () => {
                         )}
                         {resume.left.map(custom => {
                             const block = user.customInfo.find(block => block.id === custom)
-                            if(block) {
+                            if(block && block.values.length) {
                                 return (
                                     <ResumeBlock key={custom} title={block.name}>
                                         <ul>
@@ -269,7 +133,7 @@ const ResumePreview: FC = () => {
                         </ResumeBlock>
                         {resume.right.map(custom => {
                             const block = user.customInfo.find(block => block.id === custom)
-                            if(block) {
+                            if(block && block.values.length) {
                                 return (
                                     <ResumeBlock key={custom} title={block.name}>
                                         <ul>
