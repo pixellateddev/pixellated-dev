@@ -1,7 +1,8 @@
-import { Dialog, DialogActions, DialogTitle, DialogContent, Button, TextField, FormControlLabel, Checkbox } from "@mui/material"
+import { Dialog, DialogTitle, DialogContent, Button, DialogActions } from "@mui/material"
+import { Formik } from "formik"
 import { FC, useEffect } from "react"
-import { Controller, useForm } from "react-hook-form"
 import { Course } from "../../@types/resume"
+import { TextField, Checkbox } from "../formik"
 
 interface Props {
     open: boolean
@@ -10,37 +11,49 @@ interface Props {
     selectedCourse?: Course
 }
 
+const initialValues: Course = {
+    id: '',
+    courseName: '',
+    institute: '',
+    currentlyPursuing: false,
+    startYear: '',
+    endYear: '',
+    location: '',
+    score: ''
+}
+
 const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay, selectedCourse}) => {
-    const { register, handleSubmit, reset, formState, control } = useForm<Course>()
-
-    useEffect(() => {
-        reset(selectedCourse || {})
-    }, [open])
-
+    console.log(selectedCourse)
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
+            {open && ( <>
             <DialogTitle>Education Details</DialogTitle>
-            <form onSubmit={handleSubmit(onOkay)}>
-                <DialogContent style={{padding: '1em 1em', display: 'flex', flexDirection: 'column', gap: '0.5em'}}>
-                    <TextField label="Course Name" {...register('courseName')} />
-                    <TextField label="Institute Name" {...register('institute')} />
-                    <TextField label="Location" {...register('location')} />
-                    <TextField label="Start Year" {...register('startYear')} />
-                    <TextField label="End Year" {...register('endYear')} />
-                    <Controller 
-                        name='currentlyPursuing'
-                        control={control}
-                        render={({ field: { onChange, value }}) => (
-                            <FormControlLabel label="Currently Persuing?"  checked={!!value} onChange={onChange} control={<Checkbox />}/>
-                        )}
-                    />
-                    <TextField label="Score" {...register('score')} />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={onClose} color="error" variant="outlined">Cancel</Button>
-                    <Button type="submit" variant="outlined">Okay</Button>
-                </DialogActions>
-            </form>
+            <Formik
+                initialValues={selectedCourse || initialValues}
+                onSubmit={(data) => {
+                    console.log(data)
+                    onOkay(data)
+                }}
+            >
+                {({handleSubmit}) => (
+                    <form onSubmit={handleSubmit}>
+                        <DialogContent>
+                            <TextField label="Course Name" name="courseName" />
+                            <TextField label="Institute Name" name="institute" />
+                            <TextField label="Location" name="location" />
+                            <TextField label="Start Year" name="startYear" />
+                            <TextField label="End Year" name="endYear" />
+                            <Checkbox label="Currently Persuing?" name="currentlyPursuing"/>
+                            <TextField label="Score" name="score" />
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={onClose}>Cancel</Button>
+                            <Button type="submit">Okay</Button>
+                        </DialogActions>
+                    </form>
+                )}
+            </Formik>
+            </>)}
         </Dialog>
     )
 }

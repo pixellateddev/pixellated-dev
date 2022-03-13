@@ -46,7 +46,7 @@ const ResumePreview: FC = () => {
                                     <div key={`${exp.organization} - ${exp.role}`} className="work-experience">
                                         <div className="org-details">
                                             <p className="org-name">{exp.organization}</p>
-                                            <p>{exp.startDate} - {exp.currenltyWorking ? 'Present' : exp.endDate}</p>
+                                            <p>{exp.startDate} - {exp.currentlyWorking ? 'Present' : exp.endDate}</p>
                                         </div>
                                         <p>{exp.role}</p>
                                         <p>{exp.description}</p>

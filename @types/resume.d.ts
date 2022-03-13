@@ -22,7 +22,7 @@ export interface Job {
     role: string
     startDate: string
     endDate?: string
-    currenltyWorking: boolean
+    currentlyWorking: boolean
     description: string
     responsibilities: string[]
 }

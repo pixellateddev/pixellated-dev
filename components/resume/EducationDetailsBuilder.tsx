@@ -15,6 +15,8 @@ const EducationDetailsBuilder: FC<Props> = ({educationDetails, onAdd, onChange, 
     const [open, setOpen] = useState(false)
     const [ selectedCourse, setSelectedCourse ] = useState<Course | undefined>(undefined)
 
+    console.log(educationDetails)
+
     const addCourse = () => {
         setSelectedCourse(undefined)
         setOpen(true)
@@ -45,7 +47,7 @@ const EducationDetailsBuilder: FC<Props> = ({educationDetails, onAdd, onChange, 
                             <p>Institue Name: {course.institute}</p>
                             <p>Start Year: {course.startYear}</p>
                             <p>End Year: {course.endYear}</p>
-                            <p>Currently Persuing?: {(!!course.currentlyPursuing).toString()}</p>
+                            <p>Currently Persuing?: {`${course.currentlyPursuing}`}</p>
                             <p>Location: {course.location}</p>
                             <p>Score: {course.score}</p>
                         </div>

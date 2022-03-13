@@ -15,6 +15,8 @@ const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onCh
     const [ open, setOpen ] = useState(false)
     const [ selectedJob, setSelectedJob]  = useState<Job | undefined>(undefined)
 
+    console.log(selectedJob)
+
     const editJob = (selectedJob: Job) => {
         setSelectedJob(selectedJob)
         setOpen(true)
@@ -46,7 +48,7 @@ const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onCh
                             <p>Job Description: {exp.description}</p>
                             <p>Start Date: {exp.startDate}</p>
                             <p>End Date: {exp.endDate}</p>
-                            <p>Currently Working: {(!!exp.currenltyWorking).toString()}</p>
+                            <p>Currently Working: {`${exp.currentlyWorking}`}</p>
 
                         </div>
                         <div>

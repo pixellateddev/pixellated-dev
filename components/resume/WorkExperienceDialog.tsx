@@ -1,7 +1,19 @@
-import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, TextField } from "@mui/material"
+import { Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material"
+import { Formik } from "formik"
 import { FC, useEffect } from "react"
-import { Controller, useForm } from "react-hook-form"
 import { Job } from "../../@types/resume"
+import { Checkbox, TextField } from "../formik"
+
+const initialValues: Job = {
+    id: '',
+    currentlyWorking: false,
+    description: '',
+    organization: '',
+    responsibilities: [],
+    role: '',
+    startDate: '',
+    endDate: ''
+}
 
 interface Props {
     open: boolean
@@ -12,35 +24,39 @@ interface Props {
 
 
 const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, selectedJob}) => {
-    const { register, handleSubmit, reset, control } = useForm<Job>()
-
-    useEffect(() => {
-        reset(selectedJob || {})
-    }, [open])
-
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
-            <DialogTitle>Add Work Experience</DialogTitle>
-            <form onSubmit={handleSubmit(onOkay)}>
-                <DialogContent style={{padding: '1em 1em', display: 'flex', flexDirection: 'column', gap: '0.5em'}}>
-                    <TextField label="Organization Name" {...register('organization')} />
-                    <TextField label="Job Role" {...register('role')} />
-                    <TextField label="Start Date" {...register('startDate')} />
-                    <TextField label="End Date" {...register('endDate')} />
-                    <Controller 
-                        name='currenltyWorking'
-                        control={control}
-                        render={({ field: { onChange, value }}) => (
-                            <FormControlLabel label="Currently Working?"  checked={!!value} onChange={onChange} control={<Checkbox />}/>
+            {open && (
+                <>
+                    <DialogTitle>Add Work Experience</DialogTitle>
+                    <Formik
+                        initialValues={selectedJob || initialValues}
+                        onSubmit={(data) => onOkay(data)}
+                    >
+                        {({handleSubmit}) => (
+                            <form onSubmit={handleSubmit}>
+                                <DialogContent>
+                                    <TextField label="Organization Name" name="organization" />
+                                    <TextField label="Job Role" name="role" />
+                                    <TextField label="Start Date" name="startDate" />
+                                    <TextField label="End Date" name="endDate" />
+                                    <Checkbox label="Currently Working?" name="currentlyWorking" />
+                                    <TextField 
+                                        label="Job Description" 
+                                        name="description"
+                                        rows={4} 
+                                        multiline 
+                                    />
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={onClose}>Cancel</Button>
+                                    <Button type="submit">Okay</Button>
+                                </DialogActions>
+                            </form>
                         )}
-                    />
-                    <TextField label="Job Description" rows={4} maxRows={4} multiline {...register('description')}/>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={onClose} color="error" variant="outlined">Cancel</Button>
-                    <Button type="submit" variant="outlined">Okay</Button>
-                </DialogActions>
-            </form>
+                    </Formik>
+                </>
+            )}
         </Dialog>
     )
 }
