@@ -1,17 +1,17 @@
 import { Dialog, DialogActions, DialogTitle, DialogContent, Button, TextField, FormControlLabel, Checkbox } from "@mui/material"
 import { FC, useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { EducationDetails } from "../../@types/resume"
+import { Course } from "../../@types/resume"
 
 interface Props {
     open: boolean
     onClose: () => any
     onOkay: (data: any) => void
-    selectedCourse?: EducationDetails
+    selectedCourse?: Course
 }
 
 const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay, selectedCourse}) => {
-    const { register, handleSubmit, reset, formState, control } = useForm<EducationDetails>()
+    const { register, handleSubmit, reset, formState, control } = useForm<Course>()
 
     useEffect(() => {
         reset(selectedCourse || {})

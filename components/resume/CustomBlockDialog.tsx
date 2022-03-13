@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react"
 import { useFieldArray, useForm } from "react-hook-form"
-import { CustomInfo, WorkExperience } from "../../@types/resume"
+import { CustomInfo, Job } from "../../@types/resume"
 import { Dialog, DialogActions, DialogTitle, DialogContent, Button, TextField, IconButton } from "@mui/material"
 import { AddCircle, Delete } from '@mui/icons-material'
 

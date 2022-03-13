@@ -1,5 +1,5 @@
 import { createContext, FC, useContext, useState } from 'react'
-import { CustomInfo, EducationDetails, PersonalDetails, Resume, ResumeContextType, Skill, UserDetails, WorkExperience } from '../../@types/resume'
+import { CustomInfo, Course, PersonalDetails, Resume, ResumeContextType, Skill, UserDetails, Job } from '../../@types/resume'
 
 export const ResumeContext = createContext<ResumeContextType | null>(null)
 
@@ -162,25 +162,25 @@ export const useResume = () => {
         })
     }
 
-    const addEducationDetails = (data: EducationDetails) => {
+    const addEducationDetails = (newCourse: Course) => {
         setUser({
             ...user,
             educationDetails: [
                 ...user.educationDetails,
                 {
-                    ...data,
+                    ...newCourse,
                     id: Math.random().toString()
                 }
             ]
         })
     }
 
-    const updateEducationDetails = (id: string, data: EducationDetails) => {
+    const updateEducationDetails = (id: string, updatedCourse: Course) => {
         setUser({
             ...user,
             educationDetails: user.educationDetails.map(course => {
                 if (course.id === id) {
-                    return data
+                    return updatedCourse
                 }
                 return course
             })
@@ -194,27 +194,27 @@ export const useResume = () => {
         })
     }
 
-    const addWorkExperience = (data: WorkExperience) => {
+    const addWorkExperience = (newJob: Job) => {
         setUser({
             ...user,
             workExperience: [
                 ...user.workExperience,
                 {
-                    ...data,
+                    ...newJob,
                     id: Math.random().toString()
                 }
             ]
         })
     }
 
-    const updateWorkExperience = (id: string, data: WorkExperience) => {
+    const updateWorkExperience = (id: string, updatedJob: Job) => {
         setUser({
             ...user,
-            workExperience: user.workExperience.map(exp => {
-                if (exp.id === id) {
-                    return data
+            workExperience: user.workExperience.map(job => {
+                if (job.id === id) {
+                    return updatedJob
                 }
-                return exp
+                return job
             })
         })
     }
@@ -222,7 +222,7 @@ export const useResume = () => {
     const deleteWorkExperience = (id: string) => {
         setUser({
             ...user,
-            workExperience: user.workExperience.filter(exp => exp.id !== id)
+            workExperience: user.workExperience.filter(job => job.id !== id)
         })
     }
     return {

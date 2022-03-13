@@ -1,18 +1,18 @@
 import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, TextField } from "@mui/material"
 import { FC, useEffect } from "react"
 import { Controller, useForm } from "react-hook-form"
-import { WorkExperience } from "../../@types/resume"
+import { Job } from "../../@types/resume"
 
 interface Props {
     open: boolean
     onClose: () => any
     onOkay: (data: any) => void
-    selectedJob?: WorkExperience
+    selectedJob?: Job
 }
 
 
 const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, selectedJob}) => {
-    const { register, handleSubmit, reset, control } = useForm<WorkExperience>()
+    const { register, handleSubmit, reset, control } = useForm<Job>()
 
     useEffect(() => {
         reset(selectedJob || {})

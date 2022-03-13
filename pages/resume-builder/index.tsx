@@ -1,8 +1,6 @@
 import { Button } from "@mui/material"
 import { NextPage } from "next"
 import Link from "next/link"
-import { useState } from "react"
-import { PersonalDetails } from "../../@types/resume"
 import { CustomBlockBuilder, EducationDetailsBuilder, LayoutBuilder, PersonalDetailsBuilder, SkillBuilder, WorkExperienceBuilder } from "../../components/resume"
 import { useResume } from "../../state/resume"
 

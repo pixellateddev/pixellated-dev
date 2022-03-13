@@ -1,21 +1,21 @@
 import { Delete, Edit } from "@mui/icons-material"
 import { Button, IconButton, Paper } from "@mui/material"
 import { FC, useState } from "react"
-import { WorkExperience } from "../../@types/resume"
+import { Job } from "../../@types/resume"
 import WorkExperienceDialog from "./WorkExperienceDialog"
 
 interface Props {
-    workExperience: WorkExperience[]
-    onAdd: (data: WorkExperience) => void
-    onChange: (id: string, data: WorkExperience) => void
+    workExperience: Job[]
+    onAdd: (data: Job) => void
+    onChange: (id: string, data: Job) => void
     onDelete: (id: string) => void
 }
 
 const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onChange}) => {
     const [ open, setOpen ] = useState(false)
-    const [ selectedJob, setSelectedJob]  = useState<WorkExperience | undefined>(undefined)
+    const [ selectedJob, setSelectedJob]  = useState<Job | undefined>(undefined)
 
-    const editJob = (selectedJob: WorkExperience) => {
+    const editJob = (selectedJob: Job) => {
         setSelectedJob(selectedJob)
         setOpen(true)
     }
@@ -25,7 +25,7 @@ const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onCh
         setOpen(true)
     }
 
-    const onSubmit = (data: WorkExperience) => {
+    const onSubmit = (data: Job) => {
         if (selectedJob) {
             onChange(selectedJob.id, data)
         }

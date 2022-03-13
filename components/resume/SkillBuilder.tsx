@@ -1,7 +1,6 @@
 import { Button } from "@mui/material"
 import { FC, useState } from "react"
 import { Skill } from "../../@types/resume"
-import EducationDetailsDialog from "./EducationDetailsDialog"
 import SkillDialog from "./SkillDialog"
 
 interface Props {
@@ -13,6 +12,17 @@ interface Props {
 
 const SkillBuilder: FC<Props> = ({skills, onAdd}) => {
     const [open, setOpen] = useState(false)
+    const [selectedSkill, setSelectedSkill] = useState<Skill | undefined>(undefined)
+
+    const addSkill = () => {
+        setSelectedSkill(undefined)
+        setOpen(true)
+    }
+
+    const editSkill = (skill: Skill) => {
+        setSelectedSkill(skill)
+        setOpen(true)
+    }
 
     const onSubmit = (data: Skill) => {
         onAdd(data)
@@ -28,7 +38,7 @@ const SkillBuilder: FC<Props> = ({skills, onAdd}) => {
                         <p>{skill.name}</p>
                     </div>
                 ))}
-                <Button onClick={() => setOpen(true)}>Add Skill</Button>
+                <Button onClick={addSkill}>Add Skill</Button>
             </div>
             <SkillDialog open={open} onOkay={onSubmit} onClose={() => setOpen(false)} />
         </>

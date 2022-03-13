@@ -1,7 +1,7 @@
 export interface UserDetails {
     personalDetails: PersonalDetails,
-    workExperience: WorkExperience[],
-    educationDetails: EducationDetails[],
+    workExperience: Job[],
+    educationDetails: Course[],
     skills: Skill[]
     customInfo: CustomInfo[]
 }
@@ -16,7 +16,7 @@ export interface PersonalDetails {
     location?: string
 }
 
-export interface WorkExperience {
+export interface Job {
     id: string
     organization: string
     role: string
@@ -27,7 +27,7 @@ export interface WorkExperience {
     responsibilities: string[]
 }
 
-export interface EducationDetails {
+export interface Course {
     id: string
     courseName: string
     startYear: string

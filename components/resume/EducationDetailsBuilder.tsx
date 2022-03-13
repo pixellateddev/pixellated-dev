@@ -1,31 +1,31 @@
 import { Delete, Edit } from "@mui/icons-material"
 import { Button, IconButton, Paper } from "@mui/material"
 import { FC, useState } from "react"
-import { EducationDetails } from "../../@types/resume"
+import { Course } from "../../@types/resume"
 import EducationDetailsDialog from "./EducationDetailsDialog"
 
 interface Props {
-    educationDetails: EducationDetails[]
-    onAdd: (data: EducationDetails) => void
-    onChange: (id: string, data: EducationDetails) => void
+    educationDetails: Course[]
+    onAdd: (data: Course) => void
+    onChange: (id: string, data: Course) => void
     onDelete: (id: string) => void
 }
 
 const EducationDetailsBuilder: FC<Props> = ({educationDetails, onAdd, onChange, onDelete}) => {
     const [open, setOpen] = useState(false)
-    const [ selectedCourse, setSelectedCourse ] = useState<EducationDetails | undefined>(undefined)
+    const [ selectedCourse, setSelectedCourse ] = useState<Course | undefined>(undefined)
 
     const addCourse = () => {
         setSelectedCourse(undefined)
         setOpen(true)
     }
 
-    const editCourse = (selectedCourse: EducationDetails) => {
+    const editCourse = (selectedCourse: Course) => {
         setSelectedCourse(selectedCourse)
         setOpen(true)
     }
 
-    const onSubmit = (data: EducationDetails) => {
+    const onSubmit = (data: Course) => {
         if (selectedCourse) {
             onChange(selectedCourse.id, data)
         }

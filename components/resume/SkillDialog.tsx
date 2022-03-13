@@ -1,16 +1,20 @@
 import { Dialog, DialogActions, DialogTitle, DialogContent, Button, TextField, FormControlLabel, Checkbox } from "@mui/material"
 import { FC, useEffect } from "react"
 import { useForm } from "react-hook-form"
-import { EducationDetails, Skill } from "../../@types/resume"
+import { Skill } from "../../@types/resume"
 
 interface Props {
     open: boolean
     onClose: () => any
     onOkay: (data: any) => void
+    selectedSkill?: Skill
 }
 
-const SkillDialog: FC<Props> = ({open, onClose, onOkay}) => {
+const SkillDialog: FC<Props> = ({open, onClose, onOkay, selectedSkill}) => {
     const { register, handleSubmit, reset, formState } = useForm<Skill>()
+    useEffect(() => {
+        reset(selectedSkill || {})
+    }, [open])
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
             <DialogTitle>Add Skill</DialogTitle>
