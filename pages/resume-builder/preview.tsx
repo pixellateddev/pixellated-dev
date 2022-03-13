@@ -9,7 +9,6 @@ import { useResume } from "../../state/resume"
 
 const ResumePreview: FC = () => {
     const { user, resume } = useResume()
-    console.log({user, resume})
     return (
         <main className="resume-preview">
             <div className="container">

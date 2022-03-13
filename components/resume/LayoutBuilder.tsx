@@ -4,7 +4,6 @@ import { TransferList } from "../ui"
 
 const LayoutBuilder: FC = () => {
     const {resume, setLayout} = useResume()
-    console.log(resume)
     return (
         <div>
             <h3>Layout Builder</h3>

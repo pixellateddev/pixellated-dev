@@ -40,7 +40,7 @@ const EducationDetailsBuilder: FC<Props> = ({educationDetails, onAdd, onChange, 
                             <p>Institue Name: {course.institute}</p>
                             <p>Start Year: {course.startYear}</p>
                             <p>End Year: {course.endYear}</p>
-                            <p>Currently Persuing?: {course.currentlyPursuing.toString()}</p>
+                            <p>Currently Persuing?: {Boolean(course.currentlyPursuing).toString()}</p>
                             <p>Location: {course.location}</p>
                             <p>Score: {course.score}</p>
                         </div>

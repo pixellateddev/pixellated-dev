@@ -14,7 +14,6 @@ interface Props {
 
 const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, edit=false, selectedJob}) => {
     const { register, handleSubmit, reset, control } = useForm<WorkExperience>()
-    console.log(selectedJob)
 
     useEffect(() => {
         if (edit) {
