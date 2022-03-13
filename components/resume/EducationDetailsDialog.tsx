@@ -31,7 +31,7 @@ const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay, selectedCours
                         name='currentlyPursuing'
                         control={control}
                         render={({ field: { onChange, value }}) => (
-                            <FormControlLabel label="Currently Persuing?"  checked={Boolean(value)} onChange={onChange} control={<Checkbox />}/>
+                            <FormControlLabel label="Currently Persuing?"  checked={!!value} onChange={onChange} control={<Checkbox />}/>
                         )}
                     />
                     <TextField label="Score" {...register('score')} />

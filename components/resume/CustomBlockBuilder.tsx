@@ -51,7 +51,13 @@ const CustomBlockBuilder: FC<Props> = ({customInfo, onAdd, onChange, onDelete}) 
                 </div>
             ))}
             <Button onClick={addNewBlock}>Add Custom Block</Button>
-            <CustomBlockDialog open={open} onClose={() => setOpen(false)} onOkay={onSubmit} edit={Boolean(selectedBlock)} block={selectedBlock}/>
+            <CustomBlockDialog 
+                open={open} 
+                onClose={() => setOpen(false)} 
+                onOkay={onSubmit} 
+                edit={!!selectedBlock} 
+                block={selectedBlock}
+            />
         </div>
     )
 }

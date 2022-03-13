@@ -31,7 +31,7 @@ const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, selectedJob}) =
                         name='currenltyWorking'
                         control={control}
                         render={({ field: { onChange, value }}) => (
-                            <FormControlLabel label="Currently Working?"  checked={Boolean(value)} onChange={onChange} control={<Checkbox />}/>
+                            <FormControlLabel label="Currently Working?"  checked={!!value} onChange={onChange} control={<Checkbox />}/>
                         )}
                     />
                     <TextField label="Job Description" rows={4} maxRows={4} multiline {...register('description')}/>

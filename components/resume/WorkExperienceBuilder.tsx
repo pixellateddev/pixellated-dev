@@ -46,7 +46,7 @@ const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onCh
                             <p>Job Description: {exp.description}</p>
                             <p>Start Date: {exp.startDate}</p>
                             <p>End Date: {exp.endDate}</p>
-                            <p>Currently Working: {Boolean(exp.currenltyWorking).toString()}</p>
+                            <p>Currently Working: {(!!exp.currenltyWorking).toString()}</p>
 
                         </div>
                         <div>

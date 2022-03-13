@@ -2,7 +2,7 @@ import { FC } from "react"
 
 import IconText from "../../components/IconText"
 import { LogoGithub, LogoLinkedin, LoveHeartPin, Letter, CallDoctor } from '../../components/icons'
-import { BlockBody, ResumeBlock } from "../../components/resume"
+import { ResumeBlock } from "../../components/resume"
 import { List, ListItem } from "../../components/resume/List"
 import { useResume } from "../../state/resume"
 
@@ -28,15 +28,19 @@ const ResumePreview: FC = () => {
                                 <div className="contact-details-item">
                                     <IconText icon={<LoveHeartPin />}>{user.personalDetails.location}</IconText>
                                 </div>
-                                {/* <div className="contact-details-item">
-                                    <IconText icon={<LogoLinkedin />}><a href={user.linkedInUrl}>{user.linkedInUrl}</a></IconText>
-                                </div> */}
-                                <div className="contact-details-item">
-                                    <IconText icon={<LogoGithub />}><a href={user.personalDetails.github} target="_blank" rel="noreferrer">{user.personalDetails.github}</a></IconText>
-                                </div>
+                                {!!user.personalDetails.github && (
+                                    <div className="contact-details-item">
+                                        <IconText icon={<LogoGithub />}><a href={user.personalDetails.github} target="_blank" rel="noreferrer">{user.personalDetails.github}</a></IconText>
+                                    </div>
+                                )}
+                                {!!user.personalDetails.linkedin && (
+                                    <div className="contact-details-item">
+                                        <IconText icon={<LogoLinkedin />}><a href={user.personalDetails.linkedin} target="_blank" rel="noreferrer">{user.personalDetails.linkedin}</a></IconText>
+                                    </div>
+                                )}
                             </div>
                         </ResumeBlock>
-                        {Boolean(user.workExperience?.length) && 
+                        {!!user.workExperience?.length && (
                             <ResumeBlock title="Work Experience">
                                 {user.workExperience.map(exp => (
                                     <div key={`${exp.organization} - ${exp.role}`} className="work-experience">
@@ -46,8 +50,7 @@ const ResumePreview: FC = () => {
                                         </div>
                                         <p>{exp.role}</p>
                                         <p>{exp.description}</p>
-                                        {exp.responsibilities && 
-                                        Boolean(exp.responsibilities.length) && (
+                                        {!!exp.responsibilities?.length && (
                                             <>
                                                 <p><strong>Responsibilities</strong></p>
                                                 <List>
@@ -63,8 +66,8 @@ const ResumePreview: FC = () => {
                                     </div>
                                 ))}
                             </ResumeBlock>
-                        }
-                        {Boolean(user.educationDetails?.length) && (
+                        )}
+                        {!!user.educationDetails?.length && (
                             <ResumeBlock title="Education Details">
                                 {user.educationDetails.map(edu => (
                                     <div key={edu.courseName} className="education-details">
@@ -94,33 +97,6 @@ const ResumePreview: FC = () => {
                             }
                         })}
                         
-                        {/* <ResumeBlock title="Projects">
-                            <List>
-                                {user.projects.map(project => (
-                                    <ListItem key={project}>
-                                        {project}
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </ResumeBlock>
-                        <ResumeBlock title="Certifications">
-                            <List>
-                                {user.certifications.map(certification => (
-                                    <ListItem key={certification}>
-                                        {certification}
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </ResumeBlock>
-                        <ResumeBlock title="Activities">
-                            <List>
-                                {user.activities.map(activity => (
-                                    <ListItem key={activity}>
-                                        {activity}
-                                    </ListItem>
-                                ))}
-                            </List>
-                        </ResumeBlock> */}
                     </div>
                     <div className="sidebar">
                         <ResumeBlock title="Skills">
@@ -144,34 +120,6 @@ const ResumePreview: FC = () => {
                                 )
                             }
                         })}
-                        {/* <ResumeBlock title="Strengths">
-                            <List>
-                                {user.strengths.map(strength => (
-                                    <ListItem key={strength}>{strength}</ListItem>
-                                ))}
-                            </List>
-                        </ResumeBlock>
-                        <ResumeBlock title="Achievements">
-                            <List>
-                                {user.achievements.map(achivement => (
-                                    <ListItem key={achivement}>{achivement}</ListItem>
-                                ))}
-                            </List>
-                        </ResumeBlock>
-                        <ResumeBlock title="Hobbies">
-                            <List>
-                                {user.hobbies.map(hobby => (
-                                    <ListItem key={hobby}>{hobby}</ListItem>
-                                ))}
-                            </List>
-                        </ResumeBlock>
-                        <ResumeBlock title="Languages">
-                            <List>
-                                {user.languages.map(language => (
-                                    <ListItem key={language}>{language}</ListItem>
-                                ))}
-                            </List>
-                        </ResumeBlock> */}
                     </div>
                 </div>
             </div>
