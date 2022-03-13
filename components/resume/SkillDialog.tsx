@@ -1,7 +1,7 @@
 import { Dialog, DialogActions, DialogTitle, DialogContent, Button, TextField, FormControlLabel, Checkbox } from "@mui/material"
 import { FC, useEffect } from "react"
 import { useForm } from "react-hook-form"
-import { EducationDetail, Skill } from "../../@types/resume"
+import { EducationDetails, Skill } from "../../@types/resume"
 
 interface Props {
     open: boolean

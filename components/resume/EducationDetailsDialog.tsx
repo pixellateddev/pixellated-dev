@@ -1,18 +1,24 @@
 import { Dialog, DialogActions, DialogTitle, DialogContent, Button, TextField, FormControlLabel, Checkbox } from "@mui/material"
 import { FC, useEffect } from "react"
-import { useForm } from "react-hook-form"
-import { EducationDetail } from "../../@types/resume"
+import { Controller, useForm } from "react-hook-form"
+import { EducationDetails } from "../../@types/resume"
 
 interface Props {
     open: boolean
     onClose: () => any
     onOkay: (data: any) => void
+    selectedCourse?: EducationDetails
+    edit: Boolean
 }
 
-const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay}) => {
-    const { register, handleSubmit, reset, formState } = useForm<EducationDetail>()
+const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay, edit="false", selectedCourse}) => {
+    const { register, handleSubmit, reset, formState, control } = useForm<EducationDetails>()
 
-    
+    useEffect(() => {
+        if (edit) {
+            reset(selectedCourse)
+        }
+    }, [selectedCourse])
 
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
@@ -24,7 +30,13 @@ const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay}) => {
                     <TextField label="Location" {...register('location')} />
                     <TextField label="Start Year" {...register('startYear')} />
                     <TextField label="End Year" {...register('endYear')} />
-                    <FormControlLabel label="Currently Persuing?" control={<Checkbox {...register('currentlyPursuing')} />}/>
+                    <Controller 
+                        name='currentlyPursuing'
+                        control={control}
+                        render={({ field: { onChange, value }}) => (
+                            <FormControlLabel label="Currently Persuing?"  checked={Boolean(value)} onChange={onChange} control={<Checkbox />}/>
+                        )}
+                    />
                     <TextField label="Score" {...register('score')} />
                 </DialogContent>
                 <DialogActions>

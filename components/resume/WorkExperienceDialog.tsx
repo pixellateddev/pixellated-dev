@@ -1,24 +1,26 @@
 import { Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle, FormControlLabel, TextField } from "@mui/material"
 import { FC, useEffect } from "react"
-import { useForm } from "react-hook-form"
+import { Controller, useForm } from "react-hook-form"
 import { WorkExperience } from "../../@types/resume"
 
 interface Props {
     open: boolean
     onClose: () => any
     onOkay: (data: any) => void
-    initialValues: WorkExperience
+    selectedJob?: WorkExperience
+    edit: Boolean
 }
 
 
-const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, initialValues}) => {
-    const { register, handleSubmit, reset, formState } = useForm<WorkExperience>({
-        defaultValues: initialValues
-    })
+const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, edit=false, selectedJob}) => {
+    const { register, handleSubmit, reset, control } = useForm<WorkExperience>()
+    console.log(selectedJob)
 
     useEffect(() => {
-        reset(initialValues)
-    },[open])
+        if (edit) {
+            reset(selectedJob)
+        }
+    }, [selectedJob])
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
             <DialogTitle>Add Work Experience</DialogTitle>
@@ -28,7 +30,13 @@ const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, initialValues})
                     <TextField label="Job Role" {...register('role')} />
                     <TextField label="Start Date" {...register('startDate')} />
                     <TextField label="End Date" {...register('endDate')} />
-                    <FormControlLabel label="Currently Working?" control={<Checkbox {...register('currenltyWorking')} />}/>
+                    <Controller 
+                        name='currenltyWorking'
+                        control={control}
+                        render={({ field: { onChange, value }}) => (
+                            <FormControlLabel label="Currently Working?"  checked={Boolean(value)} onChange={onChange} control={<Checkbox />}/>
+                        )}
+                    />
                     <TextField label="Job Description" rows={4} maxRows={4} multiline {...register('description')}/>
                 </DialogContent>
                 <DialogActions>

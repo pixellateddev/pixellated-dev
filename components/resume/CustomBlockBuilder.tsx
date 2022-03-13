@@ -1,4 +1,5 @@
-import { Button } from "@mui/material"
+import { Delete } from "@mui/icons-material"
+import { Button, IconButton } from "@mui/material"
 import { FC, useState } from "react"
 import { CustomInfo } from "../../@types/resume"
 import CustomBlockDialog from "./CustomBlockDialog"
@@ -10,7 +11,7 @@ interface Props {
     onDelete: (id: string) => void
 }
 
-const CustomBlockBuilder: FC<Props> = ({customInfo, onAdd, onChange}) => {
+const CustomBlockBuilder: FC<Props> = ({customInfo, onAdd, onChange, onDelete}) => {
     const [ open, setOpen ] = useState(false)
     const [ selectedBlock, setSelectedBlock ] = useState<CustomInfo | undefined>()
 
@@ -37,7 +38,10 @@ const CustomBlockBuilder: FC<Props> = ({customInfo, onAdd, onChange}) => {
         <div>
             {customInfo.map(block => (
                 <div key={block.id}>
-                    <h3>{block.name}</h3>
+                    <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                        <h3>{block.name}</h3>
+                        <IconButton color="error" onClick={() => onDelete(block.id)}><Delete /></IconButton>
+                    </div>
                     <ul>
                         {block.values.map(value => (
                             <li key={value}>{value}</li>
@@ -47,7 +51,7 @@ const CustomBlockBuilder: FC<Props> = ({customInfo, onAdd, onChange}) => {
                 </div>
             ))}
             <Button onClick={addNewBlock}>Add Custom Block</Button>
-            <CustomBlockDialog open={open} onClose={() => setOpen(false)} onOkay={onSubmit} edit={setSelectedBlock !== null} block={selectedBlock}/>
+            <CustomBlockDialog open={open} onClose={() => setOpen(false)} onOkay={onSubmit} edit={Boolean(selectedBlock)} block={selectedBlock}/>
         </div>
     )
 }

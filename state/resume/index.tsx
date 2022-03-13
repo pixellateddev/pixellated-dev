@@ -1,5 +1,5 @@
 import { createContext, FC, useContext, useState } from 'react'
-import { CustomInfo, EducationDetail, PersonalDetails, Resume, ResumeContextType, Skill, UserDetails, WorkExperience } from '../../@types/resume'
+import { CustomInfo, EducationDetails, PersonalDetails, Resume, ResumeContextType, Skill, UserDetails, WorkExperience } from '../../@types/resume'
 
 export const ResumeContext = createContext<ResumeContextType | null>(null)
 
@@ -56,8 +56,8 @@ const defaultUser: UserDetails =  {
 
 const defaultResume: Resume = {
     theme: 'default',
-    left: ['languages'],
-    right: ['projects', 'certifications', 'activities', 'areaOfInterests', 'achievements', 'hobbies']
+    left: [],
+    right: ['projects', 'certifications', 'activities', 'areaOfInterests', 'achievements', 'hobbies', 'languages']
 }
 
 const ResumeProvider: FC = ({children}) => {
@@ -73,23 +73,6 @@ const ResumeProvider: FC = ({children}) => {
 
 export const useResume = () => {
     const { user, setUser, resume, setResume } = useContext(ResumeContext)!
-
-    const setResumeLeft = (left: string[]) => {
-        console.log({resume, left})
-        setResume({
-            ...resume,
-            left
-        })
-    }
-
-    const setResumeRight = (right: string[]) => {
-        console.log({resume, right})
-        setResume({
-            ...resume,
-            right
-        })
-    }
-
     const setLayout = (left: string[], right: string[]) => {
         setResume({
             ...resume,
@@ -140,6 +123,11 @@ export const useResume = () => {
             ...user,
             customInfo: user.customInfo.filter(block => block.id !== id)
         })
+        setResume({
+            ...resume,
+            left: resume.left.filter(block => block !== id),
+            right: resume.right.filter(block => block !== id)
+        })
     }
 
     const addSkill = (data: Skill) => {
@@ -174,7 +162,7 @@ export const useResume = () => {
         })
     }
 
-    const addEducationDetails = (data: EducationDetail) => {
+    const addEducationDetails = (data: EducationDetails) => {
         setUser({
             ...user,
             educationDetails: [
@@ -187,7 +175,7 @@ export const useResume = () => {
         })
     }
 
-    const updateEducationDetails = (id: string, data: EducationDetail) => {
+    const updateEducationDetails = (id: string, data: EducationDetails) => {
         setUser({
             ...user,
             educationDetails: user.educationDetails.map(course => {
@@ -254,8 +242,6 @@ export const useResume = () => {
         addCustomBlock,
         updateCustomBlock,
         deleteCustomBlock,
-        setResumeLeft,
-        setResumeRight,
         setLayout
     }
 }
