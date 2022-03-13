@@ -19,6 +19,12 @@ const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onCh
         setSelectedJob(selectedJob)
         setOpen(true)
     }
+
+    const addJob = () => {
+        setSelectedJob(undefined)
+        setOpen(true)
+    }
+
     const onSubmit = (data: WorkExperience) => {
         if (selectedJob) {
             onChange(selectedJob.id, data)
@@ -40,7 +46,7 @@ const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onCh
                             <p>Job Description: {exp.description}</p>
                             <p>Start Date: {exp.startDate}</p>
                             <p>End Date: {exp.endDate}</p>
-                            <p>Currently Working: {exp.currenltyWorking.toString()}</p>
+                            <p>Currently Working: {Boolean(exp.currenltyWorking).toString()}</p>
 
                         </div>
                         <div>
@@ -49,12 +55,11 @@ const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onCh
                         </div>
                     </Paper>
                 ))}
-                <Button onClick={() => setOpen(true)}>Add Work Experience</Button>
+                <Button onClick={addJob}>Add Work Experience</Button>
             </div>
             <WorkExperienceDialog 
                 open={open} onClose={() => setOpen(false)} 
                 onOkay={onSubmit} 
-                edit={Boolean(selectedJob)} 
                 selectedJob={selectedJob}
             />
         </>

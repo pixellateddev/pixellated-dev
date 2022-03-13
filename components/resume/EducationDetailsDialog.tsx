@@ -8,17 +8,14 @@ interface Props {
     onClose: () => any
     onOkay: (data: any) => void
     selectedCourse?: EducationDetails
-    edit: Boolean
 }
 
-const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay, edit="false", selectedCourse}) => {
+const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay, selectedCourse}) => {
     const { register, handleSubmit, reset, formState, control } = useForm<EducationDetails>()
 
     useEffect(() => {
-        if (edit) {
-            reset(selectedCourse)
-        }
-    }, [selectedCourse])
+        reset(selectedCourse || {})
+    }, [open])
 
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >

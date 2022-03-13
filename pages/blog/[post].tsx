@@ -27,6 +27,8 @@ const PostPage: NextPage<Props> = ({post}) => {
                         <img src={urlFor(post.mainImage).url()!} alt={post.title} className={styles.postMainImage}/>
                         <PortableText
                             content={post.body}
+                            projectId={process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}
+                            dataset={process.env.NEXT_PUBILC_SANITY_DATASET}
                             serializers={{
                                 h3: (props: any) => <h3 className={styles.postBodyH3} {...props} />
                             }}
@@ -75,7 +77,13 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
         description,
         mainImage,
         slug,
-        body,
+        body[]{
+            ..., 
+            asset->{
+                ...,
+                "_key": _id
+            }
+        },
         // 'comments': *[
         //     _type == "comment"
         //   && post._ref == ^._id

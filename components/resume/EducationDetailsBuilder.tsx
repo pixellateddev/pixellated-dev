@@ -15,7 +15,12 @@ const EducationDetailsBuilder: FC<Props> = ({educationDetails, onAdd, onChange, 
     const [open, setOpen] = useState(false)
     const [ selectedCourse, setSelectedCourse ] = useState<EducationDetails | undefined>(undefined)
 
-    const editJob = (selectedCourse: EducationDetails) => {
+    const addCourse = () => {
+        setSelectedCourse(undefined)
+        setOpen(true)
+    }
+
+    const editCourse = (selectedCourse: EducationDetails) => {
         setSelectedCourse(selectedCourse)
         setOpen(true)
     }
@@ -45,18 +50,17 @@ const EducationDetailsBuilder: FC<Props> = ({educationDetails, onAdd, onChange, 
                             <p>Score: {course.score}</p>
                         </div>
                         <div>
-                            <IconButton color="primary" onClick={() => editJob(course)}><Edit /></IconButton>
+                            <IconButton color="primary" onClick={() => editCourse(course)}><Edit /></IconButton>
                             <IconButton color="error" onClick={() => onDelete(course.id)}><Delete /></IconButton>
                         </div>
                     </Paper>
                 ))}
-                <Button onClick={() => setOpen(true)}>Add Education Details</Button>
+                <Button onClick={addCourse}>Add Education Details</Button>
             </div>
             <EducationDetailsDialog 
                 open={open} 
                 onOkay={onSubmit} 
                 onClose={() => setOpen(false)}
-                edit={Boolean(selectedCourse)}
                 selectedCourse={selectedCourse}
             />
         </>

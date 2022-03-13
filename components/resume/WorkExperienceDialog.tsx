@@ -8,18 +8,16 @@ interface Props {
     onClose: () => any
     onOkay: (data: any) => void
     selectedJob?: WorkExperience
-    edit: Boolean
 }
 
 
-const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, edit=false, selectedJob}) => {
+const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, selectedJob}) => {
     const { register, handleSubmit, reset, control } = useForm<WorkExperience>()
 
     useEffect(() => {
-        if (edit) {
-            reset(selectedJob)
-        }
-    }, [selectedJob])
+        reset(selectedJob || {})
+    }, [open])
+
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
             <DialogTitle>Add Work Experience</DialogTitle>
