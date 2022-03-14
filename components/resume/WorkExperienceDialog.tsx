@@ -3,6 +3,7 @@ import { Formik } from "formik"
 import { FC, useEffect } from "react"
 import { Job } from "../../@types/resume"
 import { Checkbox, TextField, DatePicker } from "../formik"
+import styles from '../../styles/resume.module.scss'
 
 const initialValues: Job = {
     id: '',
@@ -25,7 +26,7 @@ interface Props {
 
 const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, selectedJob}) => {
     return (
-        <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
+        <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
             {open && (
                 <>
                     <DialogTitle>Add Work Experience</DialogTitle>
@@ -35,18 +36,28 @@ const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, selectedJob}) =
                     >
                         {({handleSubmit}) => (
                             <form onSubmit={handleSubmit}>
-                                <DialogContent>
-                                    <TextField label="Organization Name" name="organization" />
-                                    <TextField label="Job Role" name="role" />
-                                    <TextField label="Start Date" name="startDate" />
-                                    <TextField label="End Date" name="endDate" />
-                                    <Checkbox label="Currently Working?" name="currentlyWorking" />
-                                    <TextField 
-                                        label="Job Description" 
-                                        name="description"
-                                        rows={4} 
-                                        multiline 
-                                    />
+                                <DialogContent className={styles.workExperienceForm}>
+                                    <div className={styles.orgName}>
+                                        <TextField label="Organization Name" name="organization" fullWidth required/>
+                                    </div>
+                                    <div className={styles.jobRole}>
+                                        <TextField label="Job Role" name="role" fullWidth required/>
+
+                                    </div>
+                                    <div className={styles.date}>
+                                        <TextField label="Start Date" name="startDate" required />
+                                        <TextField label="End Date" name="endDate" />
+                                        <Checkbox label="Currently Working?" name="currentlyWorking" />
+                                    </div>
+                                    <div className={styles.jobDescription}>
+                                        <TextField 
+                                            label="Job Description" 
+                                            name="description"
+                                            fullWidth
+                                            rows={4} 
+                                            multiline 
+                                        />
+                                    </div>
                                 </DialogContent>
                                 <DialogActions>
                                     <Button variant="outlined" color="error" onClick={onClose}>Cancel</Button>

@@ -70,6 +70,13 @@ const theme = createTheme({
                     padding: '0.5em 1em'
                 }
             }
+        },
+        MuiFormLabel: {
+            styleOverrides: {
+                asterisk: {
+                    color: 'red'
+                }
+            }
         }
     }
 })

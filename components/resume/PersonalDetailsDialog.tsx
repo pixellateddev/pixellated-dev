@@ -3,6 +3,8 @@ import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from "@mui/
 import { PersonalDetails } from "../../@types/resume"
 import { Formik } from "formik"
 import { TextField } from "../formik"
+import cx from 'classnames'
+import styles from '../../styles/resume.module.scss'
 
 interface Props {
     open: boolean
@@ -14,7 +16,7 @@ interface Props {
 
 const PersonalDetailsDialog: FC<Props> = ({open, onClose, onOkay, initialValues}) => {
     return (
-        <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
+        <Dialog open={open} onClose={onClose} maxWidth="lg" fullWidth >
             <DialogTitle>Personal Details</DialogTitle>
             <Formik 
                 initialValues={initialValues}
@@ -22,14 +24,14 @@ const PersonalDetailsDialog: FC<Props> = ({open, onClose, onOkay, initialValues}
             >
                 {({handleSubmit}) => (
                     <form onSubmit={handleSubmit}>
-                        <DialogContent>
-                            <TextField label="Full Name" name="fullName" />
-                            <TextField label="Current Title" name="currentRole" />
-                            <TextField label="Phone Number" name="phoneNumber" />
-                            <TextField label="Email" name="email" />
-                            <TextField label="Location" name="location" />
-                            <TextField label="Github Handle" name="github" />
-                            <TextField label="LinkedIn Handle" name="linkedin" />
+                        <DialogContent className={styles.personalDetailsForm}>
+                            <TextField label="Full Name" name="fullName" className={styles.field} />
+                            <TextField label="Email" name="email" className={styles.field} />
+                            <TextField label="Current Title" name="currentRole" fullWidth className={cx(styles.field, styles.full)} />
+                            <TextField label="Phone Number" name="phoneNumber" className={styles.field} />
+                            <TextField label="Location" name="location" className={styles.field} />
+                            <TextField label="Github Handle" name="github" className={styles.field} />
+                            <TextField label="LinkedIn Handle" name="linkedin" className={styles.field} />
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={onClose} color="error" variant="outlined">Cancel</Button>
