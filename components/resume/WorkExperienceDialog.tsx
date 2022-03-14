@@ -45,8 +45,8 @@ const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, selectedJob}) =
 
                                     </div>
                                     <div className={styles.date}>
-                                        <TextField label="Start Date" name="startDate" required />
-                                        <TextField label="End Date" name="endDate" />
+                                        <TextField label="Start Date" name="startDate" placeholder="YYYY/MM" required />
+                                        <TextField label="End Date" name="endDate" placeholder="YYYY/MM" />
                                         <Checkbox label="Currently Working?" name="currentlyWorking" />
                                     </div>
                                     <div className={styles.jobDescription}>

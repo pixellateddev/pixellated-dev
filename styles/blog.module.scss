@@ -65,7 +65,7 @@
         justify-items: start;
         gap: 1em;
         padding: 1em;
-        background-color: #F5F8F8;
+        // background-color: #F5F8F8;
 
         @media (min-width: 600px) {
         grid-template-columns: 1fr 2fr;
@@ -103,7 +103,7 @@
 .post {
     display: flex;
     flex-direction: column;
-    background-color: #F5F8F8;
+    // background-color: #F5F8F8;
     padding: 1em;
 
     .postTitle {

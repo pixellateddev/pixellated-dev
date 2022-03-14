@@ -8,6 +8,7 @@ import cx from 'classnames'
 import { Post } from "../../typings"
 import Head from "next/head"
 import { toDate } from "../../utils"
+import { Paper } from "@mui/material"
 
 interface Props {
     post: Post
@@ -22,7 +23,7 @@ const PostPage: NextPage<Props> = ({post}) => {
             <main className="container">
                 <div className="layout">
                     <div className="main-content">
-                    <div className={styles.post}>
+                    <Paper className={styles.post}>
                         <h2 className={styles.postTitle}>{post.title}</h2>
                         <img src={urlFor(post.mainImage).url()!} alt={post.title} className={styles.postMainImage}/>
                         <PortableText
@@ -34,7 +35,7 @@ const PostPage: NextPage<Props> = ({post}) => {
                             }}
                         />
                         <p className={cx('caption', styles.postDate)}>{toDate(post._createdAt)}</p>
-                    </div>
+                    </Paper>
                     </div>
                 </div>
             </main>

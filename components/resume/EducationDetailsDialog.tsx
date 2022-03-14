@@ -3,6 +3,7 @@ import { Formik } from "formik"
 import { FC, useEffect } from "react"
 import { Course } from "../../@types/resume"
 import { TextField, Checkbox } from "../formik"
+import styles from '../../styles/resume.module.scss'
 
 interface Props {
     open: boolean
@@ -33,14 +34,16 @@ const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay, selectedCours
             >
                 {({handleSubmit}) => (
                     <form onSubmit={handleSubmit}>
-                        <DialogContent>
-                            <TextField label="Course Name" name="courseName" />
-                            <TextField label="Institute Name" name="institute" />
-                            <TextField label="Location" name="location" />
-                            <TextField label="Start Year" name="startYear" />
-                            <TextField label="End Year" name="endYear" />
-                            <Checkbox label="Currently Persuing?" name="currentlyPursuing"/>
-                            <TextField label="Score" name="score" />
+                        <DialogContent className={styles.educationDetailsForm}>
+                            <TextField label="Course Name" name="courseName" required className={styles.courseName} />
+                            <TextField label="Institute Name" name="institute" required className={styles.institute}/>
+                            <TextField label="Location" name="location" className={styles.location}/>
+                            <div className={styles.date}>
+                                <TextField label="Start Year" placeholder="YYYY" required name="startYear" />
+                                <TextField label="End Year" placeholder="YYYY" name="endYear" />
+                                <Checkbox label="Currently Persuing?" name="currentlyPursuing"/>
+                            </div>
+                            <TextField label="Score" name="score" required className={styles.score}/>
                         </DialogContent>
                         <DialogActions>
                             <Button color="error" variant="outlined" onClick={onClose}>Cancel</Button>

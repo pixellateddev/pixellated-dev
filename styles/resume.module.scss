@@ -1,11 +1,30 @@
 .personalDetailsForm {
     display: grid;
-    row-gap: 1em;
-    column-gap: 1em;
+    gap: 1em;
+    grid-template-columns: 1fr;
+    justify-items: start;
 
-    @media screen and (min-width: 550px) {
-        grid-template-columns: 1fr 1fr;
+
+    @media (min-width: 500px) {
+        grid-template-columns: repeat(2, 1fr);
+        .left {
+            grid-column: 1 / span 2;
+        }
+
+        & > * {
+            grid-column: auto / span 1;
+        }
     }
+
+    @media (min-width: 600px) {
+        grid-template-columns: repeat(4, 1fr);
+        
+     
+         & > * {
+             grid-column: auto / span 2;
+         }
+    }
+    
 }
 
 
@@ -21,7 +40,9 @@
     .jobDescription {
         max-width: 700px;
     }
+}
 
+.workExperienceForm, .educationDetailsForm {
     .date {
         display: flex;
         flex-direction: column;
@@ -32,5 +53,19 @@
             align-items: center;
             flex-direction: row;
         }
+    }
+}
+
+.educationDetailsForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    .institute, .courseName {
+        max-width: 250px;
+    }
+
+    .location, .score {
+        max-width: 200px;
     }
 }

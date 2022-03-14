@@ -16,7 +16,7 @@ interface Props {
 
 const PersonalDetailsDialog: FC<Props> = ({open, onClose, onOkay, initialValues}) => {
     return (
-        <Dialog open={open} onClose={onClose} maxWidth="lg" fullWidth >
+        <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
             <DialogTitle>Personal Details</DialogTitle>
             <Formik 
                 initialValues={initialValues}
@@ -25,13 +25,13 @@ const PersonalDetailsDialog: FC<Props> = ({open, onClose, onOkay, initialValues}
                 {({handleSubmit}) => (
                     <form onSubmit={handleSubmit}>
                         <DialogContent className={styles.personalDetailsForm}>
-                            <TextField label="Full Name" name="fullName" className={styles.field} />
-                            <TextField label="Email" name="email" className={styles.field} />
-                            <TextField label="Current Title" name="currentRole" fullWidth className={cx(styles.field, styles.full)} />
-                            <TextField label="Phone Number" name="phoneNumber" className={styles.field} />
-                            <TextField label="Location" name="location" className={styles.field} />
-                            <TextField label="Github Handle" name="github" className={styles.field} />
-                            <TextField label="LinkedIn Handle" name="linkedin" className={styles.field} />
+                            <TextField label="Full Name" name="fullName" fullWidth required className={styles.left}/>
+                            <TextField label="Current Title" name="currentRole" fullWidth className={styles.left} />
+                            <TextField label="Email" name="email" fullWidth required className={styles.left}/>
+                            <TextField label="Phone Number" name="phoneNumber" required />
+                            <TextField label="Location" name="location" />
+                            <TextField label="Github Handle" name="github" />
+                            <TextField label="LinkedIn Handle" name="linkedin" />
                         </DialogContent>
                         <DialogActions>
                             <Button onClick={onClose} color="error" variant="outlined">Cancel</Button>
