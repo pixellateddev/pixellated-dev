@@ -15,8 +15,6 @@ const EducationDetailsBuilder: FC<Props> = ({educationDetails, onAdd, onChange, 
     const [open, setOpen] = useState(false)
     const [ selectedCourse, setSelectedCourse ] = useState<Course | undefined>(undefined)
 
-    console.log(educationDetails)
-
     const addCourse = () => {
         setSelectedCourse(undefined)
         setOpen(true)

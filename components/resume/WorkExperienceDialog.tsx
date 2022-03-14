@@ -2,7 +2,7 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/m
 import { Formik } from "formik"
 import { FC, useEffect } from "react"
 import { Job } from "../../@types/resume"
-import { Checkbox, TextField } from "../formik"
+import { Checkbox, TextField, DatePicker } from "../formik"
 
 const initialValues: Job = {
     id: '',
@@ -49,8 +49,8 @@ const WorkExperienceDialog: FC<Props> = ({open, onClose, onOkay, selectedJob}) =
                                     />
                                 </DialogContent>
                                 <DialogActions>
-                                    <Button onClick={onClose}>Cancel</Button>
-                                    <Button type="submit">Okay</Button>
+                                    <Button variant="outlined" color="error" onClick={onClose}>Cancel</Button>
+                                    <Button variant="outlined" type="submit">Okay</Button>
                                 </DialogActions>
                             </form>
                         )}

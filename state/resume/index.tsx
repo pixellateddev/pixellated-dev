@@ -8,7 +8,12 @@ const defaultUser: UserDetails =  {
     personalDetails:{
         fullName: '',
         phoneNumber: '',
-        email: ''
+        email: '',
+        location: '',
+        currentRole: '',
+        github: '',
+        linkedin: ''
+
     },
     workExperience: [
         
@@ -19,37 +24,37 @@ const defaultUser: UserDetails =  {
         {
             id: 'projects',
             name: 'Projects',
-            values: []
+            items: []
         },
         {
             id: 'certifications',
             name: 'Certification',
-            values: []
+            items: []
         },
         {
             id: 'activities',
             name: 'Activities',
-            values: []
+            items: []
         },
         {
             id: 'areaOfInterests',
             name: 'Area of Interests',
-            values: []
+            items: []
         },
         {   
             id: 'achievements',
             name: 'Achievements',
-            values: []
+            items: []
         },
         {
             id: 'hobbies',
             name: 'Hobbies',
-            values: []
+            items: []
         },
         {   
             id: 'languages',
             name: 'Languages',
-            values: []
+            items: []
         }
     ]
 }

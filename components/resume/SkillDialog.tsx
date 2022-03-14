@@ -1,7 +1,8 @@
-import { Dialog, DialogActions, DialogTitle, DialogContent, Button, TextField, FormControlLabel, Checkbox } from "@mui/material"
+import { Dialog, DialogActions, DialogTitle, DialogContent, Button } from "@mui/material"
+import { Formik } from "formik"
 import { FC, useEffect } from "react"
-import { useForm } from "react-hook-form"
 import { Skill } from "../../@types/resume"
+import { TextField } from "../formik"
 
 interface Props {
     open: boolean
@@ -10,23 +11,36 @@ interface Props {
     selectedSkill?: Skill
 }
 
+const initialValues: Skill = {
+    id: '',
+    name: ''
+}
+
 const SkillDialog: FC<Props> = ({open, onClose, onOkay, selectedSkill}) => {
-    const { register, handleSubmit, reset, formState } = useForm<Skill>()
-    useEffect(() => {
-        reset(selectedSkill || {})
-    }, [open])
+
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
-            <DialogTitle>Add Skill</DialogTitle>
-            <form onSubmit={handleSubmit(onOkay)}>
-                <DialogContent style={{padding: '1em 1em', display: 'flex', flexDirection: 'column', gap: '0.5em'}}>
-                    <TextField label="Name" {...register('name')} />
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={onClose} color="error" variant="outlined">Cancel</Button>
-                    <Button type="submit" variant="outlined">Okay</Button>
-                </DialogActions>
-            </form>
+            {open && (
+                <>
+                    <DialogTitle>Add Skill</DialogTitle>
+                    <Formik
+                        initialValues={initialValues}
+                        onSubmit={data => onOkay(data)}
+                    >
+                        {({handleSubmit}) => (
+                            <form onSubmit={handleSubmit}>
+                                <DialogContent>
+                                    <TextField label="Skill" name="name" />
+                                </DialogContent>
+                                <DialogActions>
+                                    <Button onClick={onClose}>Cancel</Button>
+                                    <Button type="submit">Okay</Button>
+                                </DialogActions>
+                            </form>
+                        )}
+                    </Formik>
+                </>
+            )}
         </Dialog>
     )
 }

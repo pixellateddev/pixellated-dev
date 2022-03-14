@@ -17,7 +17,7 @@ const ResumePreview: FC = () => {
                     <div className="main-content">
                         <ResumeBlock title="" classes="personal-details">
                             <h2 className="user-name">{user.personalDetails.fullName}</h2>
-                            {/* <p className="user-description">{user.personalDetails.description}</p> */}
+                            <p className="user-role">{user.personalDetails.currentRole}</p>
                             <div className="contact-details">
                                 <div className="contact-details-item">
                                     <IconText icon={<Letter />}>{user.personalDetails.email}</IconText>
@@ -30,12 +30,12 @@ const ResumePreview: FC = () => {
                                 </div>
                                 {!!user.personalDetails.github && (
                                     <div className="contact-details-item">
-                                        <IconText icon={<LogoGithub />}><a href={user.personalDetails.github} target="_blank" rel="noreferrer">{user.personalDetails.github}</a></IconText>
+                                        <IconText icon={<LogoGithub />}><a href={user.personalDetails.github} target="_blank" rel="noreferrer">@{user.personalDetails.github}</a></IconText>
                                     </div>
                                 )}
                                 {!!user.personalDetails.linkedin && (
                                     <div className="contact-details-item">
-                                        <IconText icon={<LogoLinkedin />}><a href={user.personalDetails.linkedin} target="_blank" rel="noreferrer">{user.personalDetails.linkedin}</a></IconText>
+                                        <IconText icon={<LogoLinkedin />}><a href={user.personalDetails.linkedin} target="_blank" rel="noreferrer">@{user.personalDetails.linkedin}</a></IconText>
                                     </div>
                                 )}
                             </div>
@@ -84,12 +84,12 @@ const ResumePreview: FC = () => {
                         )}
                         {resume.left.map(custom => {
                             const block = user.customInfo.find(block => block.id === custom)
-                            if(block && block.values.length) {
+                            if(block && block.items.length) {
                                 return (
                                     <ResumeBlock key={custom} title={block.name}>
                                         <ul>
-                                            {block.values.map(value => (
-                                                <li key={value}>{value}</li>
+                                            {block.items.map(item => (
+                                                <li key={item}>{item}</li>
                                             ))}
                                         </ul>
                                     </ResumeBlock>
@@ -108,12 +108,12 @@ const ResumePreview: FC = () => {
                         </ResumeBlock>
                         {resume.right.map(custom => {
                             const block = user.customInfo.find(block => block.id === custom)
-                            if(block && block.values.length) {
+                            if(block && block.items.length) {
                                 return (
                                     <ResumeBlock key={custom} title={block.name}>
                                         <ul>
-                                            {block.values.map(value => (
-                                                <li key={value}>{value}</li>
+                                            {block.items.map(item => (
+                                                <li key={item}>{item}</li>
                                             ))}
                                         </ul>
                                     </ResumeBlock>

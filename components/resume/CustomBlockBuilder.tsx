@@ -43,11 +43,11 @@ const CustomBlockBuilder: FC<Props> = ({customInfo, onAdd, onChange, onDelete}) 
                         <IconButton color="error" onClick={() => onDelete(block.id)}><Delete /></IconButton>
                     </div>
                     <ul>
-                        {block.values.map(value => (
-                            <li key={value}>{value}</li>
+                        {block.items.map(item => (
+                            <li key={item}>{item}</li>
                         ))}
                     </ul>
-                    <Button onClick={() => editBlock(block)}>{block.values.length ? 'Edit' : 'Add'} {block.name}</Button>
+                    <Button onClick={() => editBlock(block)}>{block.items.length ? 'Edit' : 'Add'} {block.name}</Button>
                 </div>
             ))}
             <Button onClick={addNewBlock}>Add Custom Block</Button>

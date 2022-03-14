@@ -46,7 +46,7 @@ export interface Skill {
 export interface CustomInfo {
     id: string
     name: string
-    values: string[]
+    items: string[]
 }
 
 export interface Resume {

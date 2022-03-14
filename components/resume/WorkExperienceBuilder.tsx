@@ -15,7 +15,6 @@ const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onCh
     const [ open, setOpen ] = useState(false)
     const [ selectedJob, setSelectedJob]  = useState<Job | undefined>(undefined)
 
-    console.log(selectedJob)
 
     const editJob = (selectedJob: Job) => {
         setSelectedJob(selectedJob)

@@ -23,17 +23,13 @@ const initialValues: Course = {
 }
 
 const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay, selectedCourse}) => {
-    console.log(selectedCourse)
     return (
         <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth >
             {open && ( <>
             <DialogTitle>Education Details</DialogTitle>
             <Formik
                 initialValues={selectedCourse || initialValues}
-                onSubmit={(data) => {
-                    console.log(data)
-                    onOkay(data)
-                }}
+                onSubmit={(data) => onOkay(data)}
             >
                 {({handleSubmit}) => (
                     <form onSubmit={handleSubmit}>
@@ -47,8 +43,8 @@ const EducationDetailsDialog: FC<Props> = ({open, onClose, onOkay, selectedCours
                             <TextField label="Score" name="score" />
                         </DialogContent>
                         <DialogActions>
-                            <Button onClick={onClose}>Cancel</Button>
-                            <Button type="submit">Okay</Button>
+                            <Button color="error" variant="outlined" onClick={onClose}>Cancel</Button>
+                            <Button variant="outlined" type="submit">Okay</Button>
                         </DialogActions>
                     </form>
                 )}

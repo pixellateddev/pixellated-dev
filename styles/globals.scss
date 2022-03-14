@@ -310,14 +310,35 @@ main {
   
 
   .layout {
+    gap: 2em;
     @media print {
       grid-template-columns: repeat(12, [col-start] 1fr);
     }
   }
 
-  .personal-details {
-    .user-name {
+  
+
+  .resume-block {
+    margin-bottom: 1em;
+
+    @media print {
+      break-inside: avoid;
+    }
+  
+    .resume-block-title {
       margin-bottom: 0.5em;
+      line-height: 1.1;
+    }
+  }
+
+  .personal-details {
+    .resume-block-title {
+      margin-bottom: 0;
+    }
+
+    .user-role {
+      font-size: 1.25rem;
+      margin-bottom: 1em;
     }
 
     .user-description {
@@ -332,18 +353,6 @@ main {
         width: 50%;
         margin-bottom: 0.5em;
       }
-    }
-  }
-
-  .resume-block {
-    margin-bottom: 1em;
-
-    @media print {
-      break-inside: avoid;
-    }
-  
-    .resume-block-title {
-      margin-bottom: 0.5em;
     }
   }
   
