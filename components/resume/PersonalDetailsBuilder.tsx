@@ -1,7 +1,6 @@
 import { Button } from "@mui/material"
 import { FC, useState } from "react"
 import { PersonalDetails } from "../../@types/resume"
-import { useResume } from "../../state/resume"
 import PersonalDetailsDialog from "./PersonalDetailsDialog"
 
 interface Props {

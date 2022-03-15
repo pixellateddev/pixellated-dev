@@ -39,7 +39,7 @@ a {
 }
 
 * {
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
 
 .button {
@@ -397,5 +397,18 @@ main {
     text-align: center;
     padding: 0.5em;
     background-color: aquamarine;
+  }
+}
+
+
+.resume-create {
+  padding: 1em;
+  display: flex;
+
+  .new-resume {
+    height: 200px;
+    width: 200px;
+    background-color: aliceblue;
+    padding: 1em;
   }
 }

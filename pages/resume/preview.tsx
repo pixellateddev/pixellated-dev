@@ -8,7 +8,7 @@ import { useResume } from "../../state/resume"
 
 
 const ResumePreview: FC = () => {
-    const { user, resume } = useResume()
+    const { userDetails: user, layout } = useResume()
     return (
         <main className="resume-preview">
             <div className="container">
@@ -82,7 +82,7 @@ const ResumePreview: FC = () => {
                                 ))}
                             </ResumeBlock>
                         )}
-                        {resume.left.map(custom => {
+                        {layout.left.map(custom => {
                             const block = user.customInfo.find(block => block.id === custom)
                             if(block && block.items.length) {
                                 return (
@@ -106,7 +106,7 @@ const ResumePreview: FC = () => {
                                 ))}
                             </List>    
                         </ResumeBlock>
-                        {resume.right.map(custom => {
+                        {layout.right.map(custom => {
                             const block = user.customInfo.find(block => block.id === custom)
                             if(block && block.items.length) {
                                 return (

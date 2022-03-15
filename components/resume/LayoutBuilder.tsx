@@ -3,16 +3,16 @@ import { useResume } from "../../state/resume"
 import { TransferList } from "../ui"
 
 const LayoutBuilder: FC = () => {
-    const {resume, setLayout} = useResume()
+    const {layout, updateLayout} = useResume()
     return (
         <div>
             <h3>Layout Builder</h3>
             <TransferList 
                 leftTitle="Left" 
                 rightTitle="Right" 
-                left={resume.left} 
-                right={resume.right}
-                onChange={setLayout}
+                left={layout.left} 
+                right={layout.right}
+                onChange={updateLayout}
             />
         </div>
     )

@@ -1,5 +1,5 @@
 import { createContext, FC, useContext, useState } from 'react'
-import { CustomInfo, Course, PersonalDetails, Resume, ResumeContextType, Skill, UserDetails, Job } from '../../@types/resume'
+import { CustomInfo, Course, PersonalDetails, Resume, ResumeContextType, Skill, UserDetails, Job, Layout } from '../../@types/resume'
 
 export const ResumeContext = createContext<ResumeContextType | null>(null)
 
@@ -59,17 +59,42 @@ const defaultUser: UserDetails =  {
     ]
 }
 
-const defaultResume: Resume = {
+const defaultLayout: Layout = {
     theme: 'default',
     left: [],
     right: ['projects', 'certifications', 'activities', 'areaOfInterests', 'achievements', 'hobbies', 'languages']
 }
 
+const defaultResume: Resume = {
+    _id: '',
+    slug: { current: ''},
+    title: '',
+    username: '',
+    userDetails: defaultUser,
+    layout: defaultLayout
+}
+
 const ResumeProvider: FC = ({children}) => {
-    const [user, setUser] = useState<UserDetails>(defaultUser)
     const [resume, setResume] = useState<Resume>(defaultResume)
+    const userDetails = resume.userDetails
+    const layout = resume.layout
+    const setUserDetails = (userDetails: UserDetails) => {
+        setResume({
+            ...resume,
+            userDetails
+        })
+    }
+
+    const setLayout = (layout: Layout) => {
+        setResume({
+            ...resume,
+            layout
+        })
+    }
+    // const [user, setUser] = useState<UserDetails>(defaultUser)
+    // const [layout, setLayout] = useState<Layout>(defaultLayout)
     return (
-        <ResumeContext.Provider value={{ user, setUser, resume, setResume }}>
+        <ResumeContext.Provider value={{ resume, userDetails, setUserDetails, layout, setLayout, setResume }}>
             {children}
         </ResumeContext.Provider>
     )
@@ -77,44 +102,44 @@ const ResumeProvider: FC = ({children}) => {
 
 
 export const useResume = () => {
-    const { user, setUser, resume, setResume } = useContext(ResumeContext)!
-    const setLayout = (left: string[], right: string[]) => {
-        setResume({
-            ...resume,
+    const { userDetails, setUserDetails, layout, setLayout, resume, setResume } = useContext(ResumeContext)!
+    const updateLayout = (left: string[], right: string[]) => {
+        setLayout({
+            ...layout,
             left,
             right
         })
     }
 
     const updatePersonalDetails = (personalDetails: PersonalDetails) => {
-        setUser({
-            ...user,
+        setUserDetails({
+            ...userDetails,
             personalDetails
         })
     }
 
     const addCustomBlock = (block: CustomInfo) => {
         const id = block.name.toLocaleLowerCase()
-        setUser({
-            ...user,
+        setUserDetails({
+            ...userDetails,
             customInfo: [
-                ...user.customInfo,
+                ...userDetails.customInfo,
                 {
                     ...block,
                     id
                 }
             ]
         })
-        setResume({
-            ...resume,
-            right: [...resume.right, id]
+        setLayout({
+            ...layout,
+            right: [...layout.right, id]
         })
     }
 
     const updateCustomBlock = (id: string, block: CustomInfo) => {
-        setUser({
-            ...user,
-            customInfo: user.customInfo.map(customBlock => {
+        setUserDetails({
+            ...userDetails,
+            customInfo: userDetails.customInfo.map(customBlock => {
                 if (customBlock.id === id) {
                     return block
                 }
@@ -124,22 +149,22 @@ export const useResume = () => {
     }
 
     const deleteCustomBlock = (id: string) => {
-        setUser({
-            ...user,
-            customInfo: user.customInfo.filter(block => block.id !== id)
+        setUserDetails({
+            ...userDetails,
+            customInfo: userDetails.customInfo.filter(block => block.id !== id)
         })
-        setResume({
-            ...resume,
-            left: resume.left.filter(block => block !== id),
-            right: resume.right.filter(block => block !== id)
+        setLayout({
+            ...layout,
+            left: layout.left.filter(block => block !== id),
+            right: layout.right.filter(block => block !== id)
         })
     }
 
     const addSkill = (data: Skill) => {
-        setUser({
-            ...user,
+        setUserDetails({
+            ...userDetails,
             skills: [
-                ...user.skills,
+                ...userDetails.skills,
                 {
                     ...data,
                     id: Math.random().toString()
@@ -149,9 +174,9 @@ export const useResume = () => {
     }
 
     const updateSkill = (id: string, data: Skill) => {
-        setUser({
-            ...user,
-            skills: user.skills.map(skill => {
+        setUserDetails({
+            ...userDetails,
+            skills: userDetails.skills.map(skill => {
                 if (skill.id === id) {
                     return data
                 }
@@ -161,17 +186,17 @@ export const useResume = () => {
     }
 
     const deleteSkill = (id: string) => {
-        setUser({
-            ...user,
-            skills: user.skills.filter(skill => skill.id !== id)
+        setUserDetails({
+            ...userDetails,
+            skills: userDetails.skills.filter(skill => skill.id !== id)
         })
     }
 
     const addEducationDetails = (newCourse: Course) => {
-        setUser({
-            ...user,
+        setUserDetails({
+            ...userDetails,
             educationDetails: [
-                ...user.educationDetails,
+                ...userDetails.educationDetails,
                 {
                     ...newCourse,
                     id: Math.random().toString()
@@ -181,9 +206,9 @@ export const useResume = () => {
     }
 
     const updateEducationDetails = (id: string, updatedCourse: Course) => {
-        setUser({
-            ...user,
-            educationDetails: user.educationDetails.map(course => {
+        setUserDetails({
+            ...userDetails,
+            educationDetails: userDetails.educationDetails.map(course => {
                 if (course.id === id) {
                     return updatedCourse
                 }
@@ -193,17 +218,17 @@ export const useResume = () => {
     }
 
     const deleteEducationDetails = (id: string) => {
-        setUser({
-            ...user,
-            educationDetails: user.educationDetails.filter(course => course.id !== id)
+        setUserDetails({
+            ...userDetails,
+            educationDetails: userDetails.educationDetails.filter(course => course.id !== id)
         })
     }
 
     const addWorkExperience = (newJob: Job) => {
-        setUser({
-            ...user,
+        setUserDetails({
+            ...userDetails,
             workExperience: [
-                ...user.workExperience,
+                ...userDetails.workExperience,
                 {
                     ...newJob,
                     id: Math.random().toString()
@@ -213,9 +238,9 @@ export const useResume = () => {
     }
 
     const updateWorkExperience = (id: string, updatedJob: Job) => {
-        setUser({
-            ...user,
-            workExperience: user.workExperience.map(job => {
+        setUserDetails({
+            ...userDetails,
+            workExperience: userDetails.workExperience.map(job => {
                 if (job.id === id) {
                     return updatedJob
                 }
@@ -225,15 +250,17 @@ export const useResume = () => {
     }
 
     const deleteWorkExperience = (id: string) => {
-        setUser({
-            ...user,
-            workExperience: user.workExperience.filter(job => job.id !== id)
+        setUserDetails({
+            ...userDetails,
+            workExperience: userDetails.workExperience.filter(job => job.id !== id)
         })
     }
     return {
-        user, 
         resume,
-        setUser, 
+        setResume,
+        userDetails, 
+        layout,
+        setUserDetails, 
         addWorkExperience, 
         updateWorkExperience, 
         deleteWorkExperience,
@@ -247,7 +274,7 @@ export const useResume = () => {
         addCustomBlock,
         updateCustomBlock,
         deleteCustomBlock,
-        setLayout
+        updateLayout
     }
 }
 

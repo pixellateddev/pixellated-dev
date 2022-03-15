@@ -37,9 +37,9 @@ const NavLinks: FC<NavProps> = ({overlay, onClick}) => {
                 </Link>
             </li>
             <li {...liProps}>
-                <Link href="/resume-builder">
+                <Link href="/resume">
                     <a className={cx("nav-link", {
-                        "nav-link-active": path === 'resume-builder'
+                        "nav-link-active": path === 'resume'
                     })}>
                         Resume Builder
                     </a>

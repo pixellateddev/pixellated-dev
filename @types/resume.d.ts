@@ -49,16 +49,29 @@ export interface CustomInfo {
     items: string[]
 }
 
-export interface Resume {
+export interface Layout {
     theme: string
     left: string[]
     right: string[]
 }
 
+export interface Resume {
+    _id: string
+    username: string
+    title: string
+    slug: {
+        current: string
+    },
+    userDetails: UserDetails,
+    layout: Layout
+}
+
 export type ResumeContextType = {
-    user: UserDetails,
-    resume: Resume,
-    setUser: (user: UserDetails) => void,
+    resume: Resume
+    userDetails: UserDetails,
+    layout: Layout,
+    setUserDetails: (user: UserDetails) => void,
+    setLayout: (layout: Layout) => void,
     setResume: (resume: Resume) => void
 }
 
