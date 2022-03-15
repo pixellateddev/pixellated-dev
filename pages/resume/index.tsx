@@ -35,16 +35,24 @@ const ResumeHome: NextPage<Props> = ({username, resumes}) => {
         <main className="container">
             <div className="layout">
                 <Paper className="full-width resume-create">
-                    <div className="new-resume">
+                    <div>
                         <p>Create new resume</p>
                         <TextField label="Title" value={title} onChange={e => setTitle(e.target.value)}/>
                         <Button variant="contained" onClick={onCreate} disabled={!title}>Create</Button>
+                        
                     </div>
+                    <p>or</p>
+
+                    <div>
+                    <p>Use an existing one</p>
+
                     {resumes.map(resume => (
-                        <div key={resume._id}>
-                            <Button onClick={() => onSelect(resume)}>{resume.title}</Button>
-                        </div>
+                            <div key={resume._id}>
+                                <Button onClick={() => onSelect(resume)}>{resume.title}</Button>
+                            </div>
                     ))}
+                    </div>
+
                 </Paper>
             </div>
         </main>
@@ -59,7 +67,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
         return {
             redirect: {
                 permanent: false,
-                destination: '/'
+                destination: '/auth/signin?redirect=/resume'
             },
             props: {}
         }
