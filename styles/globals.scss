@@ -39,7 +39,7 @@ a {
 }
 
 * {
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 .button {
@@ -401,20 +401,6 @@ main {
 }
 
 
-.resume-create {
-  padding: 1em;
-  display: flex;
-
-  .new-resume {
-    height: 200px;
-    width: 200px;
-    background-color: aliceblue;
-    padding: 1em;
-  }
-}
-
-
-
 .sign-in {
   height: 100%;
   display: flex;
@@ -440,12 +426,3 @@ main {
   }
 
 }
-
-// style={{
-//   padding: '1em',
-//   width: '50%',
-//   maxWidth: 400,
-//   textAlign: 'center',
-//   height: '70%',
-//   maxHeight: 300
-// }}

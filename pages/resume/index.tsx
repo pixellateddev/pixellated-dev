@@ -1,4 +1,5 @@
-import { Button, Paper, TextField } from "@mui/material"
+import { Delete, Edit, Preview } from "@mui/icons-material"
+import { Button, IconButton, Paper, TextField } from "@mui/material"
 import { GetServerSideProps, NextPage } from "next"
 import { getSession } from "next-auth/react"
 import { groq } from "next-sanity"
@@ -7,17 +8,19 @@ import { useState } from "react"
 import { Resume } from "../../@types/resume"
 import { sanityClient } from "../../sanity"
 import { useResume } from "../../state/resume"
+import styles from '../../styles/resume.module.scss'
 
 interface Props {
-    resumes: Resume[]
+    fetchedResumes: Resume[]
     username: string
 }
 
 
 
-const ResumeHome: NextPage<Props> = ({username, resumes}) => {
+const ResumeHome: NextPage<Props> = ({username, fetchedResumes}) => {
     const router = useRouter()
     const { resume, setResume } = useResume()
+    const [ resumes, setResumes ] = useState(fetchedResumes)
     const [ title, setTitle ] = useState('')
     const onCreate = () => {
         setResume({
@@ -27,30 +30,62 @@ const ResumeHome: NextPage<Props> = ({username, resumes}) => {
         })
         router.push('/resume/build')
     }
-    const onSelect = (resume: Resume) => {
+    const onEdit = (resume: Resume) => {
         setResume(resume)
         router.push('/resume/build')
     }
+
+    const onPreview = (resume: Resume) => {
+        setResume(resume)
+        router.push('/resume/preview')
+    }
+
+    const onDelete = async (id: string) => {
+        const oldState = resumes
+        setResumes(resumes.filter(resume => resume._id !== id))
+        await fetch(`/api/resume/delete/${id}`, {
+            method: 'POST',
+        })
+    }
+
     return (
         <main className="container">
             <div className="layout">
-                <Paper className="full-width resume-create">
-                    <div>
-                        <p>Create new resume</p>
-                        <TextField label="Title" value={title} onChange={e => setTitle(e.target.value)}/>
-                        <Button variant="contained" onClick={onCreate} disabled={!title}>Create</Button>
-                        
+                <Paper className={styles.resumeSelect}>
+
+                    <h4 className={styles.sectionTitle}>Create new resume</h4>
+                    <div className={styles.newResume}>
+                        <TextField label="Resume Name" placeholder="Choose a cool name" value={title} onChange={e => setTitle(e.target.value)}/>
+                        <Button className={styles.createResume} variant="contained" size="large" onClick={onCreate}>Create New Resume</Button>
                     </div>
-                    <p>or</p>
-
-                    <div>
-                    <p>Use an existing one</p>
-
-                    {resumes.map(resume => (
-                            <div key={resume._id}>
-                                <Button onClick={() => onSelect(resume)}>{resume.title}</Button>
-                            </div>
-                    ))}
+                    <h6 className={styles.or}>or</h6>
+                    <h4 className={styles.sectionTitle}>Use an existing one</h4>
+                    <div className={styles.existingResumeList}>
+                        {resumes.map(resume => (
+                            <Paper elevation={4} key={resume._id} className={styles.existingResumeItem}>
+                                <div className={styles.existingResumeHead}>
+                                <p className="resume-name">{resume.title}</p>
+                                <IconButton onClick={() => onDelete(resume._id)}><Delete fontSize="small"/></IconButton>
+                                </div>
+                                {/* <p>Theme: {resume.layout.theme}</p> */}
+                                <Button
+                                    fullWidth
+                                    onClick={() => onEdit(resume)}
+                                    size="large"
+                                    startIcon={<Edit />}
+                                    variant="contained"
+                                    className={styles.editResume}
+                                >Edit</Button>
+                                <Button
+                                    fullWidth
+                                    onClick={() => onPreview(resume)}
+                                    size="large"
+                                    startIcon={<Preview />}
+                                    variant="contained"
+                                    className={styles.previewResume}
+                                >Preview</Button>
+                            </Paper>
+                        ))}
                     </div>
 
                 </Paper>
@@ -77,12 +112,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
             ...
         }
     `
-    const resumes = await sanityClient.fetch(query, {
+    const fetchedResumes = await sanityClient.fetch(query, {
         username: session.user?.email
     })
     return {
         props: {
-            resumes,
+            fetchedResumes,
             username: session.user?.email
         }
     }

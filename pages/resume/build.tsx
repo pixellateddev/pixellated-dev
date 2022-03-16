@@ -18,7 +18,8 @@ const ResumeBuilder: NextPage = () => {
     const router = useRouter()
 
     const saveAndPreview = async () => {
-        await fetch('/api/resume/save', {
+
+        fetch('/api/resume/save', {
             method: 'POST',
             body: JSON.stringify({resume})
         })
