@@ -45,10 +45,10 @@ const ResumePreview: FC = () => {
                                 {user.workExperience.map(exp => (
                                     <div key={`${exp.organization} - ${exp.role}`} className="work-experience">
                                         <div className="org-details">
-                                            <p className="org-name">{exp.organization}</p>
+                                            <p className="job-role">{exp.role}</p>
                                             <p>{exp.startDate} - {exp.currentlyWorking ? 'Present' : exp.endDate}</p>
                                         </div>
-                                        <p>{exp.role}</p>
+                                        <p className="org-name">{exp.organization}</p>
                                         <p>{exp.description}</p>
                                         {!!exp.responsibilities?.length && (
                                             <>
