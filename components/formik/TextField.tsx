@@ -2,8 +2,16 @@ import { FC } from "react"
 import { TextField as MuiTextField, TextFieldProps } from '@mui/material'
 import { useField } from "formik"
 
-const TextField: FC<TextFieldProps> = (props) => {
-    const [field, meta, helpers] = useField(props.name!)
+interface Props {
+    readOnly?: boolean
+}
+
+const TextField: FC<Props & TextFieldProps> = (props) => {
+    const { name, readOnly=false } = props
+    const [field, meta, helpers] = useField(name!)
+    if (readOnly) {
+        return <p>{field.value}</p>
+    }
     return (
         <MuiTextField {...field} {...props}/>
     )

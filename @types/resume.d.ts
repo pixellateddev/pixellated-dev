@@ -14,6 +14,7 @@ export interface PersonalDetails {
     github?: string
     linkedin?: string
     location?: string
+    website?: string
 }
 
 export interface Job {

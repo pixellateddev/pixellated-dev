@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react"
 import { CustomInfo, Job } from "../../@types/resume"
-import { Dialog, DialogActions, DialogTitle, DialogContent, Button, IconButton } from "@mui/material"
+import { Dialog, DialogActions, DialogTitle, DialogContent, Button, IconButton, Typography } from "@mui/material"
 import { AddCircle, Delete } from '@mui/icons-material'
 import { FieldArray, Formik } from "formik"
 import { TextField } from "../formik"
@@ -33,15 +33,16 @@ const CustomBlockDialog: FC<Props> = ({open, onClose, onOkay, block}) => {
                     >
                         {({ handleSubmit, values }) => (
                             <form onSubmit={handleSubmit}>
-                                <DialogContent>
+                                <DialogContent style={{display: 'flex', flexDirection: 'column', gap: '1em', alignItems: 'flex-start'}}>
                                     <TextField label="Name" name="name" />
                                     <FieldArray 
                                         name="items"
                                         render={helpers => (
-                                            <div>
+                                            <div style={{width: '100%', display: 'flex', flexDirection: 'column', gap: '1em', maxHeight: 250}}>
+                                                <Typography variant="h6">Values</Typography>
                                                 {values.items.map((_, index) => (
-                                                    <div key={index}>
-                                                        <TextField  name={`items.${index}`} label={`Item ${index + 1}`} />
+                                                    <div key={index} style={{display: 'flex', justifyContent: 'space-between'}}>
+                                                        <TextField fullWidth multiline maxRows={2} name={`items.${index}`} label={`Item ${index + 1}`} />
                                                         <IconButton color="error" onClick={() => helpers.remove(index)}><Delete /></IconButton>
                                                     </div>
                                                 ))} 

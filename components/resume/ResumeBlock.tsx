@@ -1,5 +1,6 @@
 import { FC } from "react"
 import cx from 'classnames'
+import { Divider } from "@mui/material"
 
 interface Props {
     title: string,
@@ -15,7 +16,15 @@ export const BlockBody: FC = ({children}) => {
 const ResumeBlock: FC<Props> = ({ title, children, classes }) => {
     return (
         <div className={cx("resume-block", classes)}>
-            <h3 className="resume-block-title">{title}</h3>
+            {!!title && (<div className="resume-block-title" style={{display: 'flex', alignItems: 'center', gap: '.5em'}}>
+                <h3 >{title}</h3>
+                <hr 
+                    style={{
+                        flex: 1,
+                        borderTop: '1.5px solid #4B79A0'
+                    }}
+                />
+            </div>)}
             {children}
         </div>
     )

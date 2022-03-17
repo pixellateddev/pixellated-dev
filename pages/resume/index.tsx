@@ -28,11 +28,11 @@ const ResumeHome: NextPage<Props> = ({username, fetchedResumes}) => {
             title,
             username
         })
-        router.push('/resume/build')
+        router.push('/resume/builder')
     }
     const onEdit = (resume: Resume) => {
         setResume(resume)
-        router.push('/resume/build')
+        router.push('/resume/builder')
     }
 
     const onPreview = (resume: Resume) => {

@@ -12,7 +12,8 @@ const defaultUser: UserDetails =  {
         location: '',
         currentRole: '',
         github: '',
-        linkedin: ''
+        linkedin: '',
+        website: ''
 
     },
     workExperience: [

@@ -40,7 +40,7 @@ const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onCh
             <div className="work-details">
                 <h3>Work Details</h3>
                 {workExperience.map(exp => (
-                    <Paper key={exp.id} style={{padding: '1em', display: 'flex', justifyContent: 'space-between'}}>
+                    <Paper key={exp.id} style={{padding: '1em', display: 'flex', gap: '1em', justifyContent: 'space-between'}}>
                         <div>
                             <p>Organization: {exp.organization}</p>
                             <p>Job Role: {exp.role}</p>
@@ -50,7 +50,7 @@ const WorkExperienceBuilder: FC<Props> = ({workExperience, onAdd, onDelete, onCh
                             <p>Currently Working: {`${exp.currentlyWorking}`}</p>
 
                         </div>
-                        <div>
+                        <div style={{minWidth: 90}}>
                             <IconButton color="primary" onClick={() => editJob(exp)}><Edit /></IconButton>
                             <IconButton color="error" onClick={() => onDelete(exp.id)}><Delete /></IconButton>
                         </div>

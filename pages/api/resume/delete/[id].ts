@@ -7,7 +7,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-    console.log(req.query.id)
     try {
       await sanityClient.delete(req.query.id as string)
       res.status(204).json({status: 'OK'})
