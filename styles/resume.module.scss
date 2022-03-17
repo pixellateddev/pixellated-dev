@@ -160,13 +160,13 @@
         grid-template-columns: repeat(4, 1fr);
     }
 
-    .workExperience, .educationDetails{
+    .workExperience, .educationDetails, .skills{
         display: flex;
         flex-direction: column;
         height: 100%;
     }
 
-    .workExperienceForm, .educationDetailsForm {
+    .workExperienceForm, .educationDetailsForm, .skillForm {
         display: grid;
         gap: .5em 2em;
         padding: 1em 2em;

@@ -42,6 +42,8 @@ export interface Course {
 export interface Skill {
     id: string
     name: string
+    proficiency: number
+    description: string
 }
 
 export interface CustomInfo {

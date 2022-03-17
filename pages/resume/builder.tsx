@@ -1,10 +1,10 @@
-import { Paper, Tab, Tabs, Typography } from "@mui/material"
-import { Box } from "@mui/system"
+import { Button, Paper, Tab, Tabs, Typography } from "@mui/material"
 import { NextPage } from "next"
 import { FC, HTMLProps, useState } from "react"
 import cx from 'classnames'
 import styles from '../../styles/resume.module.scss'
-import { PersonalDetailsForm, WorkExperience, EducationDetails } from "../../components/resume/builder"
+import { PersonalDetailsForm, WorkExperience, EducationDetails, Skills } from "../../components/resume/builder"
+import { useRouter } from "next/router"
 import { useResume } from "../../state/resume"
 
 interface TabPanelProps extends HTMLProps<HTMLDivElement>{
@@ -33,7 +33,17 @@ const TabPanel:FC<TabPanelProps> = (props) => {
 
 const Builder: NextPage = () => {
     const [tab, selectTab] = useState(0)
-    const {userDetails} = useResume()
+    const router = useRouter()
+    const { resume } = useResume()
+
+    const saveAndPreview = async () => {
+
+        fetch('/api/resume/save', {
+            method: 'POST',
+            body: JSON.stringify({resume})
+        })
+        router.push('/resume/preview')
+    }
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         selectTab(newValue);
@@ -65,6 +75,12 @@ const Builder: NextPage = () => {
                 </TabPanel>
                 <TabPanel value={tab} index={2} className={styles.tabPanel}>
                     <EducationDetails />
+                </TabPanel>
+                <TabPanel value={tab} index={3} className={styles.tabPanel}>
+                    <Skills />
+                </TabPanel>
+                <TabPanel value={tab} index={4} className={styles.tabPanel}>
+                    <Button onClick={saveAndPreview}>Save And Preview</Button>
                 </TabPanel>
             </Paper>
         </main>

@@ -310,6 +310,14 @@ main {
   h2 {
     font-weight: 400;
   }
+
+  .main-content {
+    grid-column: 1 / -5;
+  }
+
+  .sidebar {
+    grid-column: -5 / -1;
+  }
   
 
   .layout {
@@ -397,6 +405,14 @@ main {
     text-align: center;
     padding: 0.5em;
     background-color: aquamarine;
+  }
+
+  .skills {
+    .skill {
+      .skill-description {
+        font-size: 1rem;
+      }
+    }
   }
 }
 

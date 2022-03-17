@@ -1,10 +1,11 @@
 import { FC } from "react"
 
 import IconText from "../../components/IconText"
-import { LogoGithub, LogoLinkedin, LoveHeartPin, Letter, CallDoctor } from '../../components/icons'
 import { ResumeBlock } from "../../components/resume"
 import { List, ListItem } from "../../components/resume/List"
 import { useResume } from "../../state/resume"
+import { Email, GitHub, LinkedIn, LocationOn, PhoneIphone, Public } from "@mui/icons-material"
+
 
 
 const ResumePreview: FC = () => {
@@ -20,22 +21,27 @@ const ResumePreview: FC = () => {
                             <p className="user-role">{user.personalDetails.currentRole}</p>
                             <div className="contact-details">
                                 <div className="contact-details-item">
-                                    <IconText icon={<Letter />}>{user.personalDetails.email}</IconText>
+                                    <IconText icon={<Email />}>{user.personalDetails.email}</IconText>
                                 </div>
                                 <div className="contact-details-item">
-                                    <IconText icon={<CallDoctor />}>{user.personalDetails.phoneNumber}</IconText>
+                                    <IconText icon={<PhoneIphone />}>{user.personalDetails.phoneNumber}</IconText>
                                 </div>
                                 <div className="contact-details-item">
-                                    <IconText icon={<LoveHeartPin />}>{user.personalDetails.location}</IconText>
+                                    <IconText icon={<LocationOn />}>{user.personalDetails.location}</IconText>
                                 </div>
                                 {!!user.personalDetails.github && (
                                     <div className="contact-details-item">
-                                        <IconText icon={<LogoGithub />}><a href={user.personalDetails.github} target="_blank" rel="noreferrer">@{user.personalDetails.github}</a></IconText>
+                                        <IconText icon={<GitHub />}><a href={`https://github.com/${user.personalDetails.github}`} target="_blank" rel="noreferrer">@{user.personalDetails.github}</a></IconText>
                                     </div>
                                 )}
                                 {!!user.personalDetails.linkedin && (
                                     <div className="contact-details-item">
-                                        <IconText icon={<LogoLinkedin />}><a href={user.personalDetails.linkedin} target="_blank" rel="noreferrer">@{user.personalDetails.linkedin}</a></IconText>
+                                        <IconText icon={<LinkedIn />}><a href={`https://www.linkedin.com/in/${user.personalDetails.github}`} target="_blank" rel="noreferrer">@{user.personalDetails.linkedin}</a></IconText>
+                                    </div>
+                                )}
+                                {!!user.personalDetails.website && (
+                                    <div className="contact-details-item">
+                                        <IconText icon={<Public />}><a href={user.personalDetails.website} target="_blank" rel="noreferrer">{user.personalDetails.website}</a></IconText>
                                     </div>
                                 )}
                             </div>
@@ -100,11 +106,14 @@ const ResumePreview: FC = () => {
                     </div>
                     <div className="sidebar">
                         <ResumeBlock title="Skills">
-                            <List>
+                            <div className="skills">
                                 {user.skills.map(skill => (
-                                    <ListItem key={skill.name}>{skill.name}</ListItem>
-                                ))}
-                            </List>    
+                                    <div key={skill.id} className="skill">
+                                        <p>{skill.name}</p>
+                                        <p className="skill-description">{skill.description}</p>
+                                    </div>
+                                ))} 
+                            </div>
                         </ResumeBlock>
                         {layout.right.map(custom => {
                             const block = user.customInfo.find(block => block.id === custom)
