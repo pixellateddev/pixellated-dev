@@ -8,10 +8,9 @@ import {
   PhoneIphone,
   Public
 } from '@mui/icons-material'
-
-import IconText from '../../components/IconText'
-import { ResumeBlock } from '../../components/resume'
-import { useResume } from '../../state/resume'
+import IconText from '@pixellated/components/IconText'
+import { ResumeBlock } from '@pixellated/components/resume'
+import { useResume } from '@pixellated/state/resume'
 
 const ResumePreview: FC = () => {
     const { userDetails: user, layout } = useResume()

@@ -3,10 +3,9 @@ import { FC, useState } from 'react'
 
 import { Delete, Edit, Save } from '@mui/icons-material'
 import { Button, IconButton } from '@mui/material'
-
-import { CustomInfo } from '../../../@types/resume'
-import styles from '../../../styles/resume.module.scss'
-import { TextField } from '../../formik'
+import { TextField } from '@pixellated/components/formik'
+import styles from '@pixellated/styles/resume.module.scss'
+import { CustomInfo } from '@pixellated/types/resume'
 
 interface Props {
     block: CustomInfo,

@@ -3,11 +3,9 @@ import { Formik } from 'formik'
 import { FC, useState } from 'react'
 
 import { Button } from '@mui/material'
-
-import { PersonalDetails } from '../../../@types/resume'
-import { useResume } from '../../../state/resume'
-import styles from '../../../styles/resume.module.scss'
-import { TextField } from '../../formik'
+import { TextField } from '@pixellated/components/formik'
+import { useResume } from '@pixellated/state/resume'
+import styles from '@pixellated/styles/resume.module.scss'
 
 interface Props {
     onContinue: () => void

@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { FC, HTMLProps, useState } from 'react'
 
 import { Button, Paper, Tab, Tabs } from '@mui/material'
-
 import {
   CustomBlock,
   EducationDetails,
@@ -12,9 +11,9 @@ import {
   PersonalDetailsForm,
   Skills,
   WorkExperience
-} from '../../components/resume/builder'
-import { useResume } from '../../state/resume'
-import styles from '../../styles/resume.module.scss'
+} from '@pixellated/components/resume/builder'
+import { useResume } from '@pixellated/state/resume'
+import styles from '@pixellated/styles/resume.module.scss'
 
 interface TabPanelProps extends HTMLProps<HTMLDivElement>{
     children?: React.ReactNode;

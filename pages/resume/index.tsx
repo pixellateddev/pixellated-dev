@@ -6,11 +6,10 @@ import { useState } from 'react'
 
 import { Delete, Edit, Preview } from '@mui/icons-material'
 import { Button, IconButton, Paper, TextField } from '@mui/material'
-
-import { Resume } from '../../@types/resume'
-import { sanityClient } from '../../sanity'
-import { useResume } from '../../state/resume'
-import styles from '../../styles/resume.module.scss'
+import { sanityClient } from '@pixellated/sanity'
+import { useResume } from '@pixellated/state/resume'
+import styles from '@pixellated/styles/resume.module.scss'
+import { Resume } from '@pixellated/types/resume'
 
 interface Props {
     fetchedResumes: Resume[]

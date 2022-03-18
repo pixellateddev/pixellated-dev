@@ -2,10 +2,10 @@ import cx from 'classnames'
 import { FC, useState } from 'react'
 
 import { Button } from '@mui/material'
+import { useResume } from '@pixellated/state/resume'
+import styles from '@pixellated/styles/resume.module.scss'
+import { Skill } from '@pixellated/types/resume'
 
-import { Skill } from '../../../@types/resume'
-import { useResume } from '../../../state/resume'
-import styles from '../../../styles/resume.module.scss'
 import SkillForm from './SkillForm'
 
 interface Props {

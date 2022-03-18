@@ -4,10 +4,9 @@ import { FC } from 'react'
 
 import { Delete, Edit } from '@mui/icons-material'
 import { Button, IconButton } from '@mui/material'
-
-import { Job } from '../../../@types/resume'
-import styles from '../../../styles/resume.module.scss'
-import { TextField } from '../../formik'
+import { TextField } from '@pixellated/components/formik'
+import styles from '@pixellated/styles/resume.module.scss'
+import { Job } from '@pixellated/types/resume'
 
 interface Props {
     data?: Job

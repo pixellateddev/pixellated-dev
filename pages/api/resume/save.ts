@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
 import slugify from 'slugify'
 
-import { sanityClient } from '../../../sanity'
+import { sanityClient } from '@pixellated/sanity'
 
 export default async function handler(
   req: NextApiRequest,

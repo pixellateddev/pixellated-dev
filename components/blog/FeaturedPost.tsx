@@ -3,11 +3,10 @@ import Link from 'next/link'
 import { FC } from 'react'
 
 import { Paper } from '@mui/material'
-
-import { urlFor } from '../../sanity'
-import styles from '../../styles/blog.module.scss'
-import { Post } from '../../typings'
-import { toDate } from '../../utils'
+import { urlFor } from '@pixellated/sanity'
+import styles from '@pixellated/styles/blog.module.scss'
+import { Post } from '@pixellated/typings'
+import { toDate } from '@pixellated/utils'
 
 interface Props {
     post: Post

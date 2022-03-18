@@ -4,8 +4,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { FC, MouseEventHandler, useEffect, useState } from 'react'
 
-import { ERemove, Logout, Segmentation } from '../icons'
-import { Button } from '../ui'
+import { ERemove, Logout, Segmentation } from '@pixellated/components/icons'
+import { Button } from '@pixellated/components/ui'
 
 interface NavProps {
     overlay?: boolean

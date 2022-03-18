@@ -10,7 +10,7 @@ import {
   ResumeContextType,
   Skill,
   UserDetails
-} from '../../@types/resume'
+} from '@pixellated/types/resume'
 
 export const ResumeContext = createContext<ResumeContextType | null>(null)
 

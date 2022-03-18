@@ -2,11 +2,11 @@ import { NextPage } from 'next'
 import { groq } from 'next-sanity'
 import Head from 'next/head'
 
-import { FeaturedPost } from '../../components/blog'
-import RecentPost from '../../components/blog/RecentPost'
-import { sanityClient } from '../../sanity'
-import styles from '../../styles/blog.module.scss'
-import { Post } from '../../typings'
+import { FeaturedPost } from '@pixellated/components/blog'
+import RecentPost from '@pixellated/components/blog/RecentPost'
+import { sanityClient } from '@pixellated/sanity'
+import styles from '@pixellated/styles/blog.module.scss'
+import { Post } from '@pixellated/typings'
 
 interface Props {
     featuredPost: Post,
