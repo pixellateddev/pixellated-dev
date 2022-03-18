@@ -63,15 +63,11 @@ const TransferList: FC<Props> = ({leftTitle, rightTitle, left, right, onChange})
 
   const handleCheckedRight = () => {
     onChange(not(left, leftChecked), right.concat(leftChecked))
-    // setRight(right.concat(leftChecked));
-    // setLeft(not(left, leftChecked));
     setChecked(not(checked, leftChecked));
   };
 
   const handleCheckedLeft = () => {
     onChange(left.concat(rightChecked), not(right, rightChecked))
-    // setLeft(left.concat(rightChecked));
-    // setRight(not(right, rightChecked));
     setChecked(not(checked, rightChecked));
   };
 

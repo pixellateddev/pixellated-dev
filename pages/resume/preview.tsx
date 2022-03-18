@@ -11,7 +11,6 @@ import {
 
 import IconText from '../../components/IconText'
 import { ResumeBlock } from '../../components/resume'
-import { List, ListItem } from '../../components/resume/List'
 import { useResume } from '../../state/resume'
 
 const ResumePreview: FC = () => {
@@ -65,13 +64,13 @@ const ResumePreview: FC = () => {
                                         {!!exp.responsibilities?.length && (
                                             <>
                                                 <p><strong>Responsibilities</strong></p>
-                                                <List>
+                                                <ul>
                                                     {exp.responsibilities.map(responsibility => (
-                                                        <ListItem key={responsibility}>
+                                                        <li key={responsibility}>
                                                             {responsibility}
-                                                        </ListItem>
+                                                        </li>
                                                     ))}
-                                                </List>
+                                                </ul>
                                             </>
                                         )}
                                         
