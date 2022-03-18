@@ -1,5 +1,5 @@
-import Button from "./Button"
-import TransferList from "./TransferList"
+import Button from './Button'
+import TransferList from './TransferList'
 
 export {
     Button,

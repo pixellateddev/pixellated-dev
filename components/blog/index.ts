@@ -1,3 +1,3 @@
-import FeaturedPost from "./FeaturedPost"
+import FeaturedPost from './FeaturedPost'
 
 export { FeaturedPost }

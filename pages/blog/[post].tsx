@@ -1,14 +1,15 @@
-import { GetStaticProps, NextPage } from "next"
-import { groq } from "next-sanity"
-import { sanityClient, urlFor } from "../../sanity"
-import PortableText from 'react-portable-text'
-import styles from '../../styles/blog.module.scss'
 import cx from 'classnames'
+import { GetStaticProps, NextPage } from 'next'
+import { groq } from 'next-sanity'
+import Head from 'next/head'
+import PortableText from 'react-portable-text'
 
-import { Post } from "../../typings"
-import Head from "next/head"
-import { toDate } from "../../utils"
-import { Paper } from "@mui/material"
+import { Paper } from '@mui/material'
+
+import { sanityClient, urlFor } from '../../sanity'
+import styles from '../../styles/blog.module.scss'
+import { Post } from '../../typings'
+import { toDate } from '../../utils'
 
 interface Props {
     post: Post

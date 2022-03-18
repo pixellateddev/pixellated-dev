@@ -1,6 +1,5 @@
-import NextAuth from "next-auth"
-import GitHubProvider from "next-auth/providers/github"
-
+import NextAuth from 'next-auth'
+import GitHubProvider from 'next-auth/providers/github'
 
 export default NextAuth({
     providers: [

@@ -1,8 +1,10 @@
-import { Delete } from "@mui/icons-material"
-import { Button, IconButton } from "@mui/material"
-import { FC, useState } from "react"
-import { CustomInfo } from "../../@types/resume"
-import CustomBlockDialog from "./CustomBlockDialog"
+import { FC, useState } from 'react'
+
+import { Delete } from '@mui/icons-material'
+import { Button, IconButton } from '@mui/material'
+
+import { CustomInfo } from '../../@types/resume'
+import CustomBlockDialog from './CustomBlockDialog'
 
 interface Props {
     customInfo: CustomInfo[]

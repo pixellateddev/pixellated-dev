@@ -1,9 +1,9 @@
-import PersonalDetailsForm from "./PersonalDetailsForm"
-import WorkExperience from "./WorkExperience"
-import EducationDetails from "./EducationDetails"
-import Skills from "./Skills"
-import LayoutEditor from "./LayoutEditor"
-import CustomBlock from "./CustomBlock"
+import CustomBlock from './CustomBlock'
+import EducationDetails from './EducationDetails'
+import LayoutEditor from './LayoutEditor'
+import PersonalDetailsForm from './PersonalDetailsForm'
+import Skills from './Skills'
+import WorkExperience from './WorkExperience'
 
 export {
     PersonalDetailsForm,

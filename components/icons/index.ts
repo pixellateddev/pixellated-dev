@@ -1,11 +1,11 @@
+import CallDoctor from './CallDoctor'
+import ERemove from './ERemove'
+import Letter from './Letter'
 import LogoGithub from './LogoGithub'
 import LogoLinkedin from './LogoLinkedin'
-import CallDoctor from './CallDoctor'
-import Letter from './Letter'
+import Logout from './Logout'
 import LoveHeartPin from './LoveHeartPin'
 import Segmentation from './Segmentation'
-import ERemove from './ERemove'
-import Logout from './Logout'
 
 export {
     LogoGithub,

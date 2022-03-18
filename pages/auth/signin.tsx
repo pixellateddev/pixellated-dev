@@ -1,8 +1,9 @@
-import { GitHub } from "@mui/icons-material"
-import { Button, Paper } from "@mui/material"
-import { NextPage } from "next"
-import { signIn, useSession } from "next-auth/react"
-import { useRouter } from "next/router"
+import { NextPage } from 'next'
+import { signIn, useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
+
+import { GitHub } from '@mui/icons-material'
+import { Button, Paper } from '@mui/material'
 
 const SignIn: NextPage = () => {
     const { query, replace } = useRouter()

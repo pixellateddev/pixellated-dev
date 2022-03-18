@@ -1,8 +1,10 @@
-import { Delete, Edit } from "@mui/icons-material"
-import { Button, IconButton, Paper } from "@mui/material"
-import { FC, useState } from "react"
-import { Course } from "../../@types/resume"
-import EducationDetailsDialog from "./EducationDetailsDialog"
+import { FC, useState } from 'react'
+
+import { Delete, Edit } from '@mui/icons-material'
+import { Button, IconButton, Paper } from '@mui/material'
+
+import { Course } from '../../@types/resume'
+import EducationDetailsDialog from './EducationDetailsDialog'
 
 interface Props {
     educationDetails: Course[]

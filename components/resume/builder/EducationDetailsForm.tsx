@@ -1,11 +1,13 @@
-import { Formik } from "formik"
-import { FC } from "react"
-import { Course } from "../../../@types/resume"
-import styles from '../../../styles/resume.module.scss'
 import cx from 'classnames'
-import { TextField } from "../../formik"
-import { Button, IconButton } from "@mui/material"
-import { Delete, Edit } from "@mui/icons-material"
+import { Formik } from 'formik'
+import { FC } from 'react'
+
+import { Delete, Edit } from '@mui/icons-material'
+import { Button, IconButton } from '@mui/material'
+
+import { Course } from '../../../@types/resume'
+import styles from '../../../styles/resume.module.scss'
+import { TextField } from '../../formik'
 
 interface Props {
     data?: Course

@@ -1,12 +1,18 @@
-import { FC } from "react"
+import { FC } from 'react'
 
-import IconText from "../../components/IconText"
-import { ResumeBlock } from "../../components/resume"
-import { List, ListItem } from "../../components/resume/List"
-import { useResume } from "../../state/resume"
-import { Email, GitHub, LinkedIn, LocationOn, PhoneIphone, Public } from "@mui/icons-material"
+import {
+  Email,
+  GitHub,
+  LinkedIn,
+  LocationOn,
+  PhoneIphone,
+  Public
+} from '@mui/icons-material'
 
-
+import IconText from '../../components/IconText'
+import { ResumeBlock } from '../../components/resume'
+import { List, ListItem } from '../../components/resume/List'
+import { useResume } from '../../state/resume'
 
 const ResumePreview: FC = () => {
     const { userDetails: user, layout } = useResume()

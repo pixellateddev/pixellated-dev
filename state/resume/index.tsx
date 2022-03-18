@@ -1,5 +1,16 @@
 import { createContext, FC, useContext, useState } from 'react'
-import { CustomInfo, Course, PersonalDetails, Resume, ResumeContextType, Skill, UserDetails, Job, Layout } from '../../@types/resume'
+
+import {
+  Course,
+  CustomInfo,
+  Job,
+  Layout,
+  PersonalDetails,
+  Resume,
+  ResumeContextType,
+  Skill,
+  UserDetails
+} from '../../@types/resume'
 
 export const ResumeContext = createContext<ResumeContextType | null>(null)
 

@@ -1,11 +1,12 @@
-import { Button } from "@mui/material"
-import { FC, useState } from "react"
-import { Course } from "../../../@types/resume"
-import { useResume } from "../../../state/resume"
-import styles from '../../../styles/resume.module.scss'
-import EducationDetailsForm from "./EducationDetailsForm"
-
 import cx from 'classnames'
+import { FC, useState } from 'react'
+
+import { Button } from '@mui/material'
+
+import { Course } from '../../../@types/resume'
+import { useResume } from '../../../state/resume'
+import styles from '../../../styles/resume.module.scss'
+import EducationDetailsForm from './EducationDetailsForm'
 
 interface Props {
     onContinue: () => void

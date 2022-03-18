@@ -1,5 +1,6 @@
-import { Icon } from "@mui/material"
-import { Children, FC } from "react"
+import { Children, FC } from 'react'
+
+import { Icon } from '@mui/material'
 
 interface Props {
     icon: React.ReactElement,

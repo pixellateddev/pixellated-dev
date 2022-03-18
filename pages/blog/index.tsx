@@ -1,11 +1,12 @@
-import { NextPage } from "next"
-import { groq } from "next-sanity"
-import Head from "next/head"
-import { FeaturedPost } from "../../components/blog"
-import RecentPost from "../../components/blog/RecentPost"
-import { sanityClient } from "../../sanity"
-import { Post } from "../../typings"
+import { NextPage } from 'next'
+import { groq } from 'next-sanity'
+import Head from 'next/head'
+
+import { FeaturedPost } from '../../components/blog'
+import RecentPost from '../../components/blog/RecentPost'
+import { sanityClient } from '../../sanity'
 import styles from '../../styles/blog.module.scss'
+import { Post } from '../../typings'
 
 interface Props {
     featuredPost: Post,

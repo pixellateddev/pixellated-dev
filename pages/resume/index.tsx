@@ -1,13 +1,15 @@
-import { Delete, Edit, Preview } from "@mui/icons-material"
-import { Button, IconButton, Paper, TextField } from "@mui/material"
-import { GetServerSideProps, NextPage } from "next"
-import { getSession } from "next-auth/react"
-import { groq } from "next-sanity"
-import { useRouter } from "next/router"
-import { useState } from "react"
-import { Resume } from "../../@types/resume"
-import { sanityClient } from "../../sanity"
-import { useResume } from "../../state/resume"
+import { GetServerSideProps, NextPage } from 'next'
+import { getSession } from 'next-auth/react'
+import { groq } from 'next-sanity'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+
+import { Delete, Edit, Preview } from '@mui/icons-material'
+import { Button, IconButton, Paper, TextField } from '@mui/material'
+
+import { Resume } from '../../@types/resume'
+import { sanityClient } from '../../sanity'
+import { useResume } from '../../state/resume'
 import styles from '../../styles/resume.module.scss'
 
 interface Props {

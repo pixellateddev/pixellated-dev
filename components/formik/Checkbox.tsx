@@ -1,6 +1,13 @@
-import { FC } from "react"
-import { Checkbox as MuiCheckbox, CheckboxProps, FormControlLabel, Switch, TextFieldProps } from "@mui/material"
-import { useField } from "formik"
+import { useField } from 'formik'
+import { FC } from 'react'
+
+import {
+  Checkbox as MuiCheckbox,
+  CheckboxProps,
+  FormControlLabel,
+  Switch,
+  TextFieldProps
+} from '@mui/material'
 
 interface Props extends CheckboxProps {
     label: string

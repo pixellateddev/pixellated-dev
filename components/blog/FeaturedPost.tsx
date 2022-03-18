@@ -1,12 +1,13 @@
-import Link from "next/link"
-import { FC } from "react"
-import { Paper } from "@mui/material"
-import { urlFor } from "../../sanity"
-import { Post } from "../../typings"
-import { toDate } from "../../utils"
-import styles from '../../styles/blog.module.scss'
-
 import cx from 'classnames'
+import Link from 'next/link'
+import { FC } from 'react'
+
+import { Paper } from '@mui/material'
+
+import { urlFor } from '../../sanity'
+import styles from '../../styles/blog.module.scss'
+import { Post } from '../../typings'
+import { toDate } from '../../utils'
 
 interface Props {
     post: Post

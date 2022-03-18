@@ -1,10 +1,18 @@
-import { FC } from "react"
-import { Dialog, DialogActions, DialogContent, DialogTitle, Button } from "@mui/material"
-import { PersonalDetails } from "../../@types/resume"
-import { Formik } from "formik"
-import { TextField } from "../formik"
 import cx from 'classnames'
+import { Formik } from 'formik'
+import { FC } from 'react'
+
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle
+} from '@mui/material'
+
+import { PersonalDetails } from '../../@types/resume'
 import styles from '../../styles/resume.module.scss'
+import { TextField } from '../formik'
 
 interface Props {
     open: boolean

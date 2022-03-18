@@ -1,9 +1,10 @@
-import { FC } from "react"
-import { useResume } from "../../../state/resume"
-import { TransferList } from "../../ui"
+import { FC } from 'react'
 
+import { Button } from '@mui/material'
+
+import { useResume } from '../../../state/resume'
 import styles from '../../../styles/resume.module.scss'
-import { Button } from "@mui/material"
+import { TransferList } from '../../ui'
 
 interface Props {
     onContinue: () => void

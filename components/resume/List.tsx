@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC } from 'react'
 
 export const ListItem: FC = ({children}) => {
     return <li>{children}</li>

@@ -1,11 +1,13 @@
-import { Formik } from "formik"
-import { FC, useState } from "react"
-import { PersonalDetails } from "../../../@types/resume"
-import { TextField } from "../../formik"
 import cx from 'classnames'
+import { Formik } from 'formik'
+import { FC, useState } from 'react'
+
+import { Button } from '@mui/material'
+
+import { PersonalDetails } from '../../../@types/resume'
+import { useResume } from '../../../state/resume'
 import styles from '../../../styles/resume.module.scss'
-import { Button } from "@mui/material"
-import { useResume } from "../../../state/resume"
+import { TextField } from '../../formik'
 
 interface Props {
     onContinue: () => void

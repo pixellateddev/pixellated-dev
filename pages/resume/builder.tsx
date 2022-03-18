@@ -1,11 +1,20 @@
-import { Button, Paper, Tab, Tabs, Typography } from "@mui/material"
-import { NextPage } from "next"
-import { FC, HTMLProps, useState } from "react"
 import cx from 'classnames'
+import { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { FC, HTMLProps, useState } from 'react'
+
+import { Button, Paper, Tab, Tabs } from '@mui/material'
+
+import {
+  CustomBlock,
+  EducationDetails,
+  LayoutEditor,
+  PersonalDetailsForm,
+  Skills,
+  WorkExperience
+} from '../../components/resume/builder'
+import { useResume } from '../../state/resume'
 import styles from '../../styles/resume.module.scss'
-import { PersonalDetailsForm, WorkExperience, EducationDetails, Skills, LayoutEditor, CustomBlock } from "../../components/resume/builder"
-import { useRouter } from "next/router"
-import { useResume } from "../../state/resume"
 
 interface TabPanelProps extends HTMLProps<HTMLDivElement>{
     children?: React.ReactNode;

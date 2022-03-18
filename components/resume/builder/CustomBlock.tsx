@@ -1,11 +1,12 @@
-import { Delete, Edit, Save } from "@mui/icons-material"
-import { Button, IconButton } from "@mui/material"
-import { FieldArray, Formik } from "formik"
-import { FC, useState } from "react"
-import { CustomInfo } from "../../../@types/resume"
-import { TextField } from "../../formik"
+import { FieldArray, Formik } from 'formik'
+import { FC, useState } from 'react'
 
+import { Delete, Edit, Save } from '@mui/icons-material'
+import { Button, IconButton } from '@mui/material'
+
+import { CustomInfo } from '../../../@types/resume'
 import styles from '../../../styles/resume.module.scss'
+import { TextField } from '../../formik'
 
 interface Props {
     block: CustomInfo,

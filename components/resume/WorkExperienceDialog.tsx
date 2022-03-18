@@ -1,9 +1,17 @@
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material"
-import { Formik } from "formik"
-import { FC, useEffect } from "react"
-import { Job } from "../../@types/resume"
-import { Checkbox, TextField, DatePicker } from "../formik"
+import { Formik } from 'formik'
+import { FC, useEffect } from 'react'
+
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle
+} from '@mui/material'
+
+import { Job } from '../../@types/resume'
 import styles from '../../styles/resume.module.scss'
+import { Checkbox, DatePicker, TextField } from '../formik'
 
 const initialValues: Job = {
     id: '',

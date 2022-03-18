@@ -1,11 +1,11 @@
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { FC, MouseEventHandler, useEffect, useState } from "react"
 import cx from 'classnames'
-import { ERemove, Logout, Segmentation } from "../icons"
-import { useSession, signIn, signOut } from "next-auth/react"
-import { Button } from "../ui"
+import { signIn, signOut, useSession } from 'next-auth/react'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { FC, MouseEventHandler, useEffect, useState } from 'react'
 
+import { ERemove, Logout, Segmentation } from '../icons'
+import { Button } from '../ui'
 
 interface NavProps {
     overlay?: boolean

@@ -1,9 +1,17 @@
-import { Dialog, DialogTitle, DialogContent, Button, DialogActions } from "@mui/material"
-import { Formik } from "formik"
-import { FC, useEffect } from "react"
-import { Course } from "../../@types/resume"
-import { TextField, Checkbox } from "../formik"
+import { Formik } from 'formik'
+import { FC, useEffect } from 'react'
+
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle
+} from '@mui/material'
+
+import { Course } from '../../@types/resume'
 import styles from '../../styles/resume.module.scss'
+import { Checkbox, TextField } from '../formik'
 
 interface Props {
     open: boolean

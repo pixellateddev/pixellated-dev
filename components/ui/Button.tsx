@@ -1,5 +1,5 @@
-import { FC, ButtonHTMLAttributes } from "react"
 import cx from 'classnames'
+import { ButtonHTMLAttributes, FC } from 'react'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement>{
     variant?: 'text' | 'outlined' | 'contained'

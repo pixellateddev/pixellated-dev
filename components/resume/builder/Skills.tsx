@@ -1,11 +1,12 @@
-import { Button } from "@mui/material"
-import { FC, useState } from "react"
-import { Skill } from "../../../@types/resume"
-import { useResume } from "../../../state/resume"
-import styles from '../../../styles/resume.module.scss'
-import SkillForm from "./SkillForm"
-
 import cx from 'classnames'
+import { FC, useState } from 'react'
+
+import { Button } from '@mui/material'
+
+import { Skill } from '../../../@types/resume'
+import { useResume } from '../../../state/resume'
+import styles from '../../../styles/resume.module.scss'
+import SkillForm from './SkillForm'
 
 interface Props {
     onContinue: () => void

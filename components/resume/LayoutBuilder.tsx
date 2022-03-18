@@ -1,6 +1,7 @@
-import { FC } from "react"
-import { useResume } from "../../state/resume"
-import { TransferList } from "../ui"
+import { FC } from 'react'
+
+import { useResume } from '../../state/resume'
+import { TransferList } from '../ui'
 
 const LayoutBuilder: FC = () => {
     const {layout, updateLayout} = useResume()

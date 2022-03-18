@@ -1,10 +1,9 @@
-import ResumeBlock, {BlockBody} from "./ResumeBlock";
+import CustomBlockBuilder from './CustomBlockBuilder'
+import EducationDetailsBuilder from './EducationDetailsBuilder'
+import LayoutBuilder from './LayoutBuilder'
 import PersonalDetailsBuilder from './PersonalDetailsBuilder'
-import WorkExperienceBuilder from "./WorkExperienceBuilder"
-import EducationDetailsBuilder from "./EducationDetailsBuilder";
-import CustomBlockBuilder from "./CustomBlockBuilder";
-import LayoutBuilder from "./LayoutBuilder";
-
+import ResumeBlock, { BlockBody } from './ResumeBlock'
+import WorkExperienceBuilder from './WorkExperienceBuilder'
 
 export { 
     ResumeBlock, 

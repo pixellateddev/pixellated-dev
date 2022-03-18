@@ -1,8 +1,10 @@
-import { Delete, Edit } from "@mui/icons-material"
-import { Button, IconButton, Paper } from "@mui/material"
-import { FC, useState } from "react"
-import { Job } from "../../@types/resume"
-import WorkExperienceDialog from "./WorkExperienceDialog"
+import { FC, useState } from 'react'
+
+import { Delete, Edit } from '@mui/icons-material'
+import { Button, IconButton, Paper } from '@mui/material'
+
+import { Job } from '../../@types/resume'
+import WorkExperienceDialog from './WorkExperienceDialog'
 
 interface Props {
     workExperience: Job[]

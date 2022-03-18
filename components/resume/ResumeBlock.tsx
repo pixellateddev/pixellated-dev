@@ -1,6 +1,7 @@
-import { FC } from "react"
 import cx from 'classnames'
-import { Divider } from "@mui/material"
+import { FC } from 'react'
+
+import { Divider } from '@mui/material'
 
 interface Props {
     title: string,

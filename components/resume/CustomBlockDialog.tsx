@@ -1,10 +1,19 @@
-import { FC, useEffect } from "react"
-import { CustomInfo, Job } from "../../@types/resume"
-import { Dialog, DialogActions, DialogTitle, DialogContent, Button, IconButton, Typography } from "@mui/material"
-import { AddCircle, Delete } from '@mui/icons-material'
-import { FieldArray, Formik } from "formik"
-import { TextField } from "../formik"
+import { FieldArray, Formik } from 'formik'
+import { FC, useEffect } from 'react'
 
+import { AddCircle, Delete } from '@mui/icons-material'
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  Typography
+} from '@mui/material'
+
+import { CustomInfo, Job } from '../../@types/resume'
+import { TextField } from '../formik'
 
 interface Props {
     open: boolean
