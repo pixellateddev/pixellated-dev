@@ -133,19 +133,22 @@
     .resumeBuilder {
         height: 100%;
         display: flex;
-        align-items: baseline;
 
         .tabs {
             width: 200px;
         }
         .tabPanel {
             flex: 1;
-            padding: 0em 1em 1em;
+            padding: 1em;
             font-size: .875rem;
             height: 100%;
-            // display: flex;
-            // flex-direction: column;
 
+            .tabPanelContent {
+                display: grid;
+                align-items: flex-start;
+                grid-template-rows: auto 1fr auto;
+                height: 100%;
+            }
             .tabActionButtons {
                 display: flex;
                 flex-direction: row-reverse;

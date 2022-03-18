@@ -5,7 +5,13 @@ import { useResume } from "../../../state/resume"
 import styles from '../../../styles/resume.module.scss'
 import EducationDetailsForm from "./EducationDetailsForm"
 
-const EducationDetails: FC = () => {
+import cx from 'classnames'
+
+interface Props {
+    onContinue: () => void
+}
+
+const EducationDetails: FC<Props> = ({ onContinue }) => {
     const { userDetails, addEducationDetails, updateEducationDetails, deleteEducationDetails } = useResume()
     const [edit, setEdit] = useState<string>('')
 
@@ -24,8 +30,8 @@ const EducationDetails: FC = () => {
     }
 
     return (
-        <div className={styles.educationDetails}>
-            Education Details
+        <div className={cx(styles.tabPanelContent, styles.educationDetails)}>
+            <h4>Education Details</h4>
             <div className={styles.eductionDetailsForm}>
                 {userDetails.educationDetails.map(course => (
                     <EducationDetailsForm 
@@ -46,7 +52,7 @@ const EducationDetails: FC = () => {
                 )}
             </div>
             <div className={styles.tabActionButtons}>
-                <Button>Continue</Button>
+                <Button onClick={onContinue}>Continue</Button>
                 {!edit && <Button onClick={() => setEdit('true')}>Add Education History</Button>}
             </div>
         </div>

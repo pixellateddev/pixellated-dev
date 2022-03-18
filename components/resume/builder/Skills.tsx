@@ -5,7 +5,13 @@ import { useResume } from "../../../state/resume"
 import styles from '../../../styles/resume.module.scss'
 import SkillForm from "./SkillForm"
 
-const Skills: FC = () => {
+import cx from 'classnames'
+
+interface Props {
+    onContinue: () => void
+}
+
+const Skills: FC<Props> = ({ onContinue }) => {
     const { userDetails, addSkill, updateSkill, deleteSkill } = useResume()
     const [edit, setEdit] = useState<string>('')
 
@@ -23,8 +29,8 @@ const Skills: FC = () => {
         setEdit('')
     }
     return (
-        <div className={styles.skills}>
-            Skills
+        <div className={cx(styles.tabPanelContent, styles.skills)}>
+            <h4>Skills</h4>
             <div className={styles.skillForms}>
                 {userDetails.skills.map(skill => (
                     <SkillForm 
@@ -45,7 +51,7 @@ const Skills: FC = () => {
                 )}
             </div>
             <div className={styles.tabActionButtons}>
-                <Button>Continue</Button>
+                <Button onClick={onContinue}>Continue</Button>
                 {!edit && <Button onClick={() => setEdit('true')}>Add Skill</Button>}
             </div>
         </div>

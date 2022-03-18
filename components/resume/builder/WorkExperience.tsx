@@ -4,8 +4,13 @@ import { useResume } from "../../../state/resume"
 import WorkExperienceForm from "./WorkExperienceForm"
 import styles from '../../../styles/resume.module.scss'
 import { Job } from "../../../@types/resume"
+import cx from 'classnames'
 
-const WorkExperience: FC = () => {
+interface Props {
+    onContinue: () => void
+}
+
+const WorkExperience: FC<Props> = ({ onContinue }) => {
     const { userDetails, addWorkExperience, deleteWorkExperience, updateWorkExperience } = useResume()
     const [edit, setEdit] = useState<string>('')
     const handleUpdate = (id: string, data: Job) => {
@@ -22,8 +27,8 @@ const WorkExperience: FC = () => {
         setEdit('')
     }
     return (
-        <div className={styles.workExperience}>
-            Work Experience
+        <div className={cx(styles.tabPanelContent, styles.workExperience)}>
+            <h4>Work Experience</h4>
             <div className={styles.workExperienceForms}>
                 {userDetails.workExperience.map(job => (
                     <WorkExperienceForm 
@@ -45,7 +50,7 @@ const WorkExperience: FC = () => {
             </div>
             
             <div className={styles.tabActionButtons}>
-                <Button>Continue</Button>
+                <Button onClick={onContinue}>Continue</Button>
                 {!edit && <Button onClick={() => setEdit('true')}>Add Job History</Button>}
             </div>
         </div>

@@ -25,7 +25,10 @@ const defaultUser: UserDetails =  {
         {
             id: 'projects',
             name: 'Projects',
-            items: []
+            items: [
+                'A1',
+                'A2'
+            ]
         },
         {
             id: 'certifications',

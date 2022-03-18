@@ -12,26 +12,13 @@ interface Props {
 }
 
 
-
-const initialValues: PersonalDetails = {
-    fullName: 'Himanshu Sagar',
-    currentRole: 'Software Engineer III @ Factset',
-    email: 'pixellateddev@gmail.com',
-    phoneNumber: '+91 7509406124',
-    location: 'Hyderabad, India',
-    github: 'pixellateddev',
-    linkedin: 'pixellateddev',
-    website: 'https://pixellated-dev.vercel.app/'
-}
-
-
 const PersonalDetailsForm: FC<Props> = ({onContinue}) => {
     const [ edit, setEdit ] = useState(false)
     const { userDetails, updatePersonalDetails } = useResume()
 
     return (
-        <div>
-            Personal Details
+        <div className={styles.tabPanelContent}>
+            <h4>Personal Details</h4>
             <Formik
                 initialValues={userDetails.personalDetails}
                 onSubmit={data => updatePersonalDetails(data)}
@@ -52,8 +39,8 @@ const PersonalDetailsForm: FC<Props> = ({onContinue}) => {
                         onContinue()
                     }
                     return (
-                    <form>
-                        <div className={styles.personalDetailsForm}>
+                        <>
+                        <form className={styles.personalDetailsForm}>
                            <div className={styles.field}>
                                <p className={styles.label}>Full Name: </p>
                                 <TextField name="fullName"  readOnly={!edit} />
@@ -87,12 +74,12 @@ const PersonalDetailsForm: FC<Props> = ({onContinue}) => {
                                <p className={styles.label}>Linkedin: </p>
                                <TextField name="github"  readOnly={!edit}/>
                            </div>
-                        </div>
-                        <div className={styles.tabActionButtons}>
-                            <Button onClick={saveAndContinue}>{edit ? 'Save and Continue' : 'Continue'}</Button>
-                            <Button onClick={save}>{edit ? 'Save' : 'Edit'}</Button>
-                        </div>
                     </form>
+                    <div className={styles.tabActionButtons}>
+                        <Button onClick={saveAndContinue}>{edit ? 'Save and Continue' : 'Continue'}</Button>
+                        <Button onClick={save}>{edit ? 'Save' : 'Edit'}</Button>
+                    </div>
+                    </>
                 )}}
             </Formik>
         </div>

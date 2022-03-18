@@ -109,7 +109,7 @@ const ResumePreview: FC = () => {
                             <div className="skills">
                                 {user.skills.map(skill => (
                                     <div key={skill.id} className="skill">
-                                        <p>{skill.name}</p>
+                                        <p className="skill-name">{skill.name}</p>
                                         <p className="skill-description">{skill.description}</p>
                                     </div>
                                 ))} 

@@ -75,6 +75,8 @@ a {
 @media print {
   body {
     -webkit-print-color-adjust: exact; 
+    background: #fbfefd;
+    background-color: #fbfefd;
   }
 
   .header, .footer {
@@ -359,6 +361,7 @@ main {
     .contact-details {
       display: flex;
       flex-wrap: wrap;
+      font-size: 1rem;
   
       .contact-details-item {
         width: 50%;
@@ -408,9 +411,16 @@ main {
   }
 
   .skills {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
     .skill {
+      .skill-name {
+        font-size: 1.125rem;
+      }
       .skill-description {
         font-size: 1rem;
+        line-height: 1.1;
       }
     }
   }
