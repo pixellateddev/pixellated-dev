@@ -36,10 +36,7 @@ const defaultUser: UserDetails =  {
         {
             id: 'projects',
             name: 'Projects',
-            items: [
-                'A1',
-                'A2'
-            ]
+            items: []
         },
         {
             id: 'certifications',
@@ -80,7 +77,7 @@ const defaultLayout: Layout = {
     right: ['projects', 'certifications', 'activities', 'areaOfInterests', 'achievements', 'hobbies', 'languages']
 }
 
-const defaultResume: Resume = {
+export const defaultResume: Resume = {
     _id: '',
     slug: { current: ''},
     title: '',

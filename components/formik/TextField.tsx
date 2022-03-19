@@ -10,11 +10,13 @@ interface Props {
 const TextField: FC<Props & TextFieldProps> = (props) => {
     const { name, readOnly=false } = props
     const [field, meta, helpers] = useField(name!)
+    const { error, touched } = meta
+    
     if (readOnly) {
         return <p>{field.value}</p>
     }
     return (
-        <MuiTextField {...field} {...props}/>
+        <MuiTextField {...field} {...props} helperText={touched && error} error={!!(touched && error)}/>
     )
 }
 

@@ -4,7 +4,7 @@ import { FC } from 'react'
 
 import { Delete, Edit } from '@mui/icons-material'
 import { Button, IconButton } from '@mui/material'
-import { TextField } from '@pixellated/components/formik'
+import { Checkbox, TextField } from '@pixellated/components/formik'
 import styles from '@pixellated/styles/resume.module.scss'
 import { Job } from '@pixellated/types/resume'
 
@@ -57,6 +57,11 @@ const WorkExperienceForm: FC<Props> = ({data, readOnly, onDelete, onEdit, onSave
                             <div className={cx(styles.field, styles.fieldAuto)}>
                                 <p className={styles.label}>End Date: </p>
                                 <TextField name="endDate"  readOnly={readOnly} />
+                            </div>
+
+                            <div className={cx(styles.field, styles.fieldAuto)}>
+                                {/* <p className={styles.label}>End Date: </p> */}
+                                <Checkbox name="currentlyWorking" label="Currently Working?" />
                             </div>
                             
                             <div className={cx(styles.field, styles.fieldFull)}>

@@ -81,9 +81,8 @@ const Builder: NextPage = () => {
                     {resume.userDetails.customInfo.map(block => (
                         <Tab key={block.id} label={block.name} />
                     ))}
-                    <Tab label="Custom Blocks" />
+                    {/* <Tab label="Custom Blocks" /> */}
                     <Tab label="Layout Editor" />
-                    <Tab label="Save and Preview" />
                 </Tabs>
                 <TabPanel value={tab} index={0} className={styles.tabPanel}>
                     <PersonalDetailsForm onContinue={handleContinue}/>
@@ -102,11 +101,11 @@ const Builder: NextPage = () => {
                         <CustomBlock block={block} onContinue={handleContinue}/>
                     </TabPanel>
                 ))}
-                <TabPanel value={tab} index={5 + blocks} className={styles.tabPanel}>
-                    <LayoutEditor onContinue={handleContinue}/>
-                </TabPanel>
-                <TabPanel value={tab} index={6 + blocks} className={styles.tabPanel}>
-                    <Button onClick={saveAndPreview}>Save And Preview</Button>
+                {/* <TabPanel value={tab} index={4 + blocks} className={styles.tabPanel}>
+                    <p>Coming Soon...</p>
+                </TabPanel> */}
+                <TabPanel value={tab} index={4 + blocks} className={styles.tabPanel}>
+                    <LayoutEditor onContinue={saveAndPreview}/>
                 </TabPanel>
             </Paper>
         </main>

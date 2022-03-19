@@ -16,6 +16,7 @@
     "@mui/lab": "^5.0.0-alpha.72",
     "@mui/material": "^5.5.0",
     "@sanity/image-url": "^1.0.1",
+    "@types/yup": "^0.29.13",
     "classnames": "^2.3.1",
     "formik": "^2.2.9",
     "moment": "^2.29.1",
@@ -26,7 +27,8 @@
     "react-dom": "17.0.2",
     "react-portable-text": "^0.4.3",
     "sass": "^1.49.9",
-    "slugify": "^1.6.5"
+    "slugify": "^1.6.5",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/node": "17.0.21",

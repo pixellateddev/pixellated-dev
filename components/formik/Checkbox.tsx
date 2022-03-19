@@ -11,14 +11,17 @@ import {
 
 interface Props extends CheckboxProps {
     label: string
+    readOnly?: boolean
 }
 
 const Checkbox: FC<Props> = (props) => {
-    const [field, meta, helpers] = useField({name: props.name!, type: 'checkbox'})
+    const { name , label, readOnly=false} = props
+    const [field, meta, helpers] = useField({name: name!, type: 'checkbox'})
     return (
     <FormControlLabel 
-        label={props.label}
-        control={<MuiCheckbox {...field} {...props}/>}
+        label={label}
+        control={<>{field.value}</>}
+        // control={<MuiCheckbox {...field} {...props}/>}
     />
     )
 }

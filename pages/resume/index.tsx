@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { Delete, Edit, Preview } from '@mui/icons-material'
 import { Button, IconButton, Paper, TextField } from '@mui/material'
 import { sanityClient } from '@pixellated/sanity'
-import { useResume } from '@pixellated/state/resume'
+import { defaultResume, useResume } from '@pixellated/state/resume'
 import styles from '@pixellated/styles/resume.module.scss'
 import { Resume } from '@pixellated/types/resume'
 
@@ -25,7 +25,7 @@ const ResumeHome: NextPage<Props> = ({username, fetchedResumes}) => {
     const [ title, setTitle ] = useState('')
     const onCreate = () => {
         setResume({
-            ...resume,
+            ...defaultResume,
             title,
             username
         })

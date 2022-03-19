@@ -1,15 +1,29 @@
 import cx from 'classnames'
 import { Formik } from 'formik'
 import { FC, useState } from 'react'
+import * as yup from 'yup'
 
 import { Button } from '@mui/material'
 import { TextField } from '@pixellated/components/formik'
 import { useResume } from '@pixellated/state/resume'
 import styles from '@pixellated/styles/resume.module.scss'
+import { PersonalDetails } from '@pixellated/types/resume'
 
 interface Props {
     onContinue: () => void
 }
+
+
+const validations: yup.SchemaOf<PersonalDetails> = yup.object({
+    fullName: yup.string().required(),
+    currentRole: yup.string(),
+    email: yup.string().email().required(),
+    phoneNumber: yup.string().required(),
+    github: yup.string(),
+    linkedin: yup.string(),
+    website: yup.string().url(),
+    location: yup.string().required()
+})
 
 
 const PersonalDetailsForm: FC<Props> = ({onContinue}) => {
@@ -21,23 +35,18 @@ const PersonalDetailsForm: FC<Props> = ({onContinue}) => {
             <h4>Personal Details</h4>
             <Formik
                 initialValues={userDetails.personalDetails}
-                onSubmit={data => updatePersonalDetails(data)}
+                validationSchema={validations}
+                onSubmit={data => {
+                    console.log('submitting')
+                    updatePersonalDetails(data)
+                    setEdit(false)
+                }}
             >
-                {({ handleSubmit, values, setSubmitting }) => {
-                    const save = () => {
-                        if (edit) {
-                            setSubmitting(true)
-                            handleSubmit()
-                            setEdit(false)
-                        }
-                        else {
-                            setEdit(true)
-                        }
-                    }
-                
+                {({ handleSubmit, errors }) => {
                     const saveAndContinue = () => {
                         onContinue()
                     }
+                    console.log(errors)
                     return (
                         <>
                         <form className={styles.personalDetailsForm}>
@@ -77,7 +86,8 @@ const PersonalDetailsForm: FC<Props> = ({onContinue}) => {
                     </form>
                     <div className={styles.tabActionButtons}>
                         <Button onClick={saveAndContinue}>{edit ? 'Save and Continue' : 'Continue'}</Button>
-                        <Button onClick={save}>{edit ? 'Save' : 'Edit'}</Button>
+                        {!edit && <Button onClick={() => setEdit(true)}>Edit</Button>}
+                        {edit && <Button onClick={() => handleSubmit()}>Save</Button>}
                     </div>
                     </>
                 )}}

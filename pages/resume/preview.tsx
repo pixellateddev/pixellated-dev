@@ -52,19 +52,25 @@ const ResumePreview: FC = () => {
                         </ResumeBlock>
                         {!!user.workExperience?.length && (
                             <ResumeBlock title="Work Experience">
-                                {user.workExperience.map(exp => (
+                                {user.workExperience.map(exp => {
+                                    let responsibilities = exp.description.split('.').filter(res => res)
+                                    if (responsibilities.length === 1) {
+                                        responsibilities = []
+                                    }
+                                    const description = responsibilities.length ? '' : exp.description
+                                    return (
                                     <div key={`${exp.organization} - ${exp.role}`} className="work-experience">
                                         <div className="org-details">
                                             <p className="job-role">{exp.role}</p>
-                                            <p>{exp.startDate} - {exp.currentlyWorking ? 'Present' : exp.endDate}</p>
+                                            <p>{exp.startDate} - {exp.currentlyWorking || !exp.endDate ? 'Present' : exp.endDate}</p>
                                         </div>
                                         <p className="org-name">{exp.organization}</p>
-                                        <p>{exp.description}</p>
-                                        {!!exp.responsibilities?.length && (
+                                        <p className='org-description'>{description}</p>
+                                        {!!responsibilities?.length && (
                                             <>
                                                 <p><strong>Responsibilities</strong></p>
-                                                <ul>
-                                                    {exp.responsibilities.map(responsibility => (
+                                                <ul className='org-responsibilities'>
+                                                    {responsibilities.map(responsibility => (
                                                         <li key={responsibility}>
                                                             {responsibility}
                                                         </li>
@@ -74,7 +80,7 @@ const ResumePreview: FC = () => {
                                         )}
                                         
                                     </div>
-                                ))}
+                                )})}
                             </ResumeBlock>
                         )}
                         {!!user.educationDetails?.length && (
